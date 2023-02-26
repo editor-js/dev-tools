@@ -1,1 +1,1 @@
-# editorjs-DevTools
+# Editor.js dev tools
