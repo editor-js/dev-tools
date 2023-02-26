@@ -4,7 +4,7 @@ export default function config(){
         setup: {
             packageManager: 'yarn',
             core: {
-                version: 'latest'
+                version: '2.26.5'
             }
         }
     }
