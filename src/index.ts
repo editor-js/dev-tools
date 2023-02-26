@@ -1,6 +1,6 @@
 import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/packageInstaller.js';
-import config  from '../editor.tool.js';
+import config  from '../editorjs.config.js';
 import { z } from 'zod';
 
 /**

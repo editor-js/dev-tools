@@ -19,7 +19,7 @@ const Core = z.object({
  */
 const Setup = z.object({
   core: Core,
-  packageManager: z.nativeEnum(PackageManager),
+  packageManager: z.optional(z.nativeEnum(PackageManager)),
 });
 
 /**

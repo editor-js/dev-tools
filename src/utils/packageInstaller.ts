@@ -17,10 +17,15 @@ export class PackageInstaller {
   /**
    * Initiate package installer
    *
-   * @param {PackageManager} packageManager - package manager for installation.
+   * @param {PackageManager} packageManager - package manager for installation (default is npm).
    */
-  constructor(packageManager: PackageManager) {
-    this.packageManager = packageManager;
+  constructor(packageManager?: PackageManager) {
+
+    if (packageManager) {
+      this.packageManager = packageManager;
+    } else {
+      this.packageManager = PackageManager.NPM;
+    }
   }
 
   /**
