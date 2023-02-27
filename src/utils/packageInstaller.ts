@@ -38,10 +38,10 @@ export class PackageInstaller {
 
     // Check if version exists
     if (version) {
-      packageString = `@editorjs/${name}@${version}`;
+      packageString = `${name}@${version}`;
     } else {
       // Latest version of package
-      packageString = `@editorjs/${name}`;
+      packageString = name;
     }
 
     try {

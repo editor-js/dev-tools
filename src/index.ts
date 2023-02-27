@@ -25,7 +25,7 @@ class DevTools {
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
 
-    this.core = new Tool('editorjs', corePath, coreVersion);
+    this.core = new Tool('@editorjs/editorjs', corePath, coreVersion);
 
     const tools = this.parsedConfig.setup.tools;
 
