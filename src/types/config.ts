@@ -6,6 +6,9 @@ import { PackageManager } from '../utils/packageInstaller.js';
  */
 const versionRegex = /^\d+\.\d+\.\d+$/;
 
+/**
+ * Configuration for editor.js tool installation
+ */
 const Tool = z.object({
   name: z.string(),
   version: z.optional(z.string().regex(versionRegex)),
