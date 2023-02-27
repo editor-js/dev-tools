@@ -20,7 +20,6 @@ export class PackageInstaller {
    * @param {PackageManager} packageManager - package manager for installation (default is npm).
    */
   constructor(packageManager?: PackageManager) {
-
     if (packageManager) {
       this.packageManager = packageManager;
     } else {
@@ -34,15 +33,25 @@ export class PackageInstaller {
    * @param {string} name - package name.
    * @param {string} version - package version
    */
-  public installPackage(name: string, version: string): void {
+  public installPackage(name: string, version?: string): void {
+    let packageString;
+
+    // Check if version exists
+    if (version) {
+      packageString = `@editorjs/${name}@${version}`;
+    } else {
+      // Latest version of package
+      packageString = `@editorjs/${name}`;
+    }
+
     try {
       // Check what package manager uses
       switch (this.packageManager) {
         case PackageManager.NPM:
-          execSync(`npm install ${name}@${version}`, { stdio: 'inherit' });
+          execSync(`npm install ${packageString}`, { stdio: 'inherit' });
           break;
         case PackageManager.YARN:
-          execSync(`yarn add ${name}@${version}`, { stdio: 'inherit' });
+          execSync(`yarn add ${packageString}`, { stdio: 'inherit' });
       }
     } catch (err) {
       console.log(err);

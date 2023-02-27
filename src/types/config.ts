@@ -6,6 +6,12 @@ import { PackageManager } from '../utils/packageInstaller.js';
  */
 const versionRegex = /^\d+\.\d+\.\d+$/;
 
+const Tool = z.object({
+  name: z.string(),
+  version: z.optional(z.string().regex(versionRegex)),
+  path: z.optional(z.string()),
+});
+
 /**
  * Configuration for Core initiation
  */
@@ -20,6 +26,7 @@ const Core = z.object({
 const Setup = z.object({
   core: Core,
   packageManager: z.optional(z.nativeEnum(PackageManager)),
+  tools: z.optional(z.array(Tool)),
 });
 
 /**
