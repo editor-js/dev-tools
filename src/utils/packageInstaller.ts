@@ -48,7 +48,7 @@ export class PackageInstaller {
       // Check what package manager uses
       switch (this.packageManager) {
         case PackageManager.NPM:
-          execSync(`npm install ${packageString}`, { stdio: 'inherit' });
+          execSync(`npm install -E ${packageString}`, { stdio: 'inherit' });
           break;
         case PackageManager.YARN:
           execSync(`yarn add ${packageString}`, { stdio: 'inherit' });

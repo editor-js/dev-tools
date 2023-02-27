@@ -4,7 +4,7 @@ import { PackageManager } from '../utils/packageInstaller.js';
 /**
  * Regex for string as version
  */
-const versionRegex = /^\d+\.\d+\.\d+$/;
+const versionRegex = /(^|~)*\d+\.\d+\.\d+$/;
 
 /**
  * Configuration for editor.js tool installation
