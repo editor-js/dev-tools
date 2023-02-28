@@ -29,7 +29,7 @@ const Core = z.object({
 const Setup = z.object({
   core: Core,
   packageManager: z.optional(z.nativeEnum(PackageManager)),
-  tools: z.optional(z.array(Tool)),
+  tools: z.optional(z.array(z.union([Tool, z.string()]))),
 });
 
 /**

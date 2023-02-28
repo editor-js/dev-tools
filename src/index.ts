@@ -37,7 +37,14 @@ class DevTools {
     // Check if tools in config
     if (tools) {
       for (const toolItem of tools) {
-        const tool = new Tool(toolItem.name, toolItem.path, toolItem.version);
+        let tool: Tool;
+
+        // Check is tool in config is string or object
+        if (typeof toolItem === 'string') {
+          tool = new Tool(toolItem);
+        } else {
+          tool = new Tool(toolItem.name, toolItem.path, toolItem.version);
+        }
 
         this.tools.push(tool);
       }

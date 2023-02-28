@@ -7,9 +7,11 @@ export default function config(){
                 version: '2.26.5'
             },
             tools: [
-                {name: '@editorjs/raw'},
+                '@editorjs/raw',
                 {name: '@editorjs/table', version: '~2.2.0'}
             ]
         }
     }
 }
+
+
