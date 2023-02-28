@@ -8,6 +8,11 @@ enum SourceType {
 
 /**
  * Class for editorjs tools
+ *
+ * @property {string} name - tool name
+ * @property {SourceType} sourceType - source type of tool, by path(link) of npm
+ * @property {string} version - tool version in npm
+ * @property {string} path - tool local path or CDN link
  */
 export class Tool {
   public readonly name: string;

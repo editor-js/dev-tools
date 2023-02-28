@@ -6,6 +6,11 @@ import { Tool } from './types/tool.js';
 
 /**
  * Class editor.js dev tools
+ *
+ * @property {Tool} core - editor.js core
+ * @property {Array<Tool>} tools - list of editor.js plugins
+ * @property {Config} parsedConfig - parsed 'editorjs.config.ts'
+ * @property {PackageInstaller} installer - util for installing packages
  */
 class DevTools {
   public readonly core: Tool;
@@ -43,9 +48,9 @@ class DevTools {
    * Create editor.js workspace
    */
   public createWorkspace(): void {
-    // check is version in core
+    // Check for source type of core and install it
     if (this.core.sourceType === 'npm') {
-      // install editor.js by version
+      // Install editor.js by version
       this.installer.installPackage(this.core.name, this.core.version);
     }
 
