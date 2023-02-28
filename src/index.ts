@@ -2,7 +2,7 @@ import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/packageInstaller.js';
 import config from '../editorjs.config.js';
 import { z } from 'zod';
-import { Tool } from './types/tool.js';
+import { SourceType, Tool } from './types/tool.js';
 
 /**
  * Class editor.js dev tools
@@ -56,14 +56,14 @@ class DevTools {
    */
   public createWorkspace(): void {
     // Check for source type of core and install it
-    if (this.core.sourceType === 'npm') {
+    if (this.core.sourceType === SourceType.REMOTE) {
       // Install editor.js by version
       this.installer.installPackage(this.core.name, this.core.version);
     }
 
     // Check for source type and install all tools
     for (const tool of this.tools) {
-      if (tool.sourceType === 'npm') {
+      if (tool.sourceType === SourceType.REMOTE) {
         this.installer.installPackage(tool.name, tool.version);
       }
     }

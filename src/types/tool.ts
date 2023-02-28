@@ -1,8 +1,8 @@
 /**
  * Enum for source type of tool
  */
-enum SourceType {
-  NPM = 'npm',
+export enum SourceType {
+  REMOTE = 'remote',
   PATH = 'path'
 }
 
@@ -50,7 +50,7 @@ export class Tool {
       return sourceType;
     }
 
-    sourceType = SourceType.NPM;
+    sourceType = SourceType.REMOTE;
 
     return sourceType;
   }
