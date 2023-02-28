@@ -2,19 +2,21 @@ import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/packageInstaller.js';
 import config from '../editorjs.config.js';
 import { z } from 'zod';
-import { SourceType, Tool } from './types/tool.js';
+import { SourceType } from './types/editorjs/installableTool.js';
+import { Plugin } from './types/editorjs/plugin.js';
+import { Core } from './types/editorjs/core.js';
 
 /**
  * Class editor.js dev tools
  *
- * @property {Tool} core - editor.js core
- * @property {Array<Tool>} tools - list of editor.js plugins
+ * @property {Plugin} core - editor.js core
+ * @property {Array<Plugin>} plugins - list of editor.js plugins
  * @property {Config} parsedConfig - parsed 'editorjs.config.ts'
  * @property {PackageInstaller} installer - util for installing packages
  */
 class DevTools {
-  public readonly core: Tool;
-  public readonly tools: Array<Tool>;
+  public readonly core: Core;
+  public readonly plugins: Array<Plugin>;
   private readonly parsedConfig: z.infer<typeof Config>;
   private readonly installer: PackageInstaller;
 
@@ -24,29 +26,29 @@ class DevTools {
   constructor() {
     this.parsedConfig = Config.parse(config());
     this.installer = new PackageInstaller(this.parsedConfig.setup.packageManager);
-    this.tools = [];
+    this.plugins = [];
 
     // Get core path and version from config
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
 
-    this.core = new Tool('@editorjs/editorjs', corePath, coreVersion);
+    this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
 
     const tools = this.parsedConfig.setup.tools;
 
     // Check if tools in config
     if (tools) {
       for (const toolItem of tools) {
-        let tool: Tool;
+        let tool: Plugin;
 
         // Check is tool in config is string or object
         if (typeof toolItem === 'string') {
-          tool = new Tool(toolItem);
+          tool = new Plugin(toolItem);
         } else {
-          tool = new Tool(toolItem.name, toolItem.path, toolItem.version);
+          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
         }
 
-        this.tools.push(tool);
+        this.plugins.push(tool);
       }
     }
   }
@@ -56,14 +58,14 @@ class DevTools {
    */
   public createWorkspace(): void {
     // Check for source type of core and install it
-    if (this.core.sourceType === SourceType.REMOTE) {
+    if (this.core.sourceType === SourceType.Registry) {
       // Install editor.js by version
       this.installer.installPackage(this.core.name, this.core.version);
     }
 
     // Check for source type and install all tools
-    for (const tool of this.tools) {
-      if (tool.sourceType === SourceType.REMOTE) {
+    for (const tool of this.plugins) {
+      if (tool.sourceType === SourceType.Registry) {
         this.installer.installPackage(tool.name, tool.version);
       }
     }
