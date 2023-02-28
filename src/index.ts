@@ -1,10 +1,10 @@
 import { Config } from './types/config.js';
-import { PackageInstaller } from './utils/packageInstaller.js';
+import { PackageInstaller } from './utils/PackageInstaller.js';
 import config from '../editorjs.config.js';
 import { z } from 'zod';
 import { SourceType } from './types/editorjs/installableTool.js';
-import { Plugin } from './types/editorjs/plugin.js';
-import { Core } from './types/editorjs/core.js';
+import { Plugin } from './types/editorjs/Plugin.js';
+import { Core } from './types/editorjs/Core.js';
 
 /**
  * Class editor.js dev tools
