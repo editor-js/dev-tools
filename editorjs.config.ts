@@ -8,7 +8,10 @@ export default function config(){
             },
             tools: [
                 '@editorjs/raw',
-                {name: '@editorjs/table', version: '~2.2.0'}
+                {
+                  name: '@editorjs/table', 
+                  version: '~2.2.0'
+                }
             ]
         }
     }
