@@ -54,7 +54,7 @@ export class DevTools {
     /**
      * Install all tools
      */
-    for (let plugin of this.plugins) {
+    for (const plugin of this.plugins) {
       plugin.install(this.installer);
     }
   }
