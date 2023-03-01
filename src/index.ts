@@ -8,16 +8,25 @@ import { Core } from './types/editorjs/Core.js';
 
 /**
  * Class editor.js dev tools
- *
- * @property {Plugin} core - editor.js core
- * @property {Array<Plugin>} plugins - list of editor.js plugins
- * @property {Config} parsedConfig - parsed 'editorjs.config.ts'
- * @property {PackageInstaller} installer - util for installing packages
  */
 class DevTools {
+  /**
+   * Editor.js core
+   */
   public readonly core: Core;
+  /**
+   * List of editor.js plugins
+   */
   public readonly plugins: Array<Plugin>;
+  /**
+   * Parsed 'editorjs.config.ts'
+   */
   private readonly parsedConfig: z.infer<typeof Config>;
+  /**
+   * Util for installing packages
+   *
+   * @private
+   */
   private readonly installer: PackageInstaller;
 
   /**

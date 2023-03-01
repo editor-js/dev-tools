@@ -2,16 +2,23 @@ import { InstallableTool, SourceType } from './installableTool.js';
 
 /**
  * Class for editor.js plugins
- *
- * @property {string} name - plugin name
- * @property {SourceType} sourceType - source type of plugin, by path(link) of npm
- * @property {string} version - plugin version in registry
- * @property {string} path - plugin local path or CDN link
  */
 export class Plugin implements InstallableTool {
+  /**
+   * Plugin name
+   */
   public readonly name: string;
+  /**
+   * Source type of plugin, by path(link) or registry
+   */
   public readonly sourceType: SourceType;
+  /**
+   * Plugin version in registry
+   */
   public readonly version?: string;
+  /**
+   * Plugin local path or CDN link
+   */
   public readonly path?: string;
 
   /**

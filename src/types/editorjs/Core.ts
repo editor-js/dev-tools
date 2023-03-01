@@ -2,16 +2,23 @@ import { InstallableTool, SourceType } from './installableTool.js';
 
 /**
  * Class for editor.js core
- *
- * @property {string} name - core name
- * @property {SourceType} sourceType - source type of core, by path(link) of npm
- * @property {string} version - core version in registry
- * @property {string} path - core local path or CDN link
  */
 export class Core implements InstallableTool {
+  /**
+   * Core name
+   */
   public readonly name: string;
+  /**
+   * Source type of core, by path(link) of registry
+   */
   public readonly sourceType: SourceType;
+  /**
+   * Core version in registry
+   */
   public readonly version?: string;
+  /**
+   * Core local path or CDN link
+   */
   public readonly path?: string;
 
   /**

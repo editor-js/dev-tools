@@ -10,10 +10,13 @@ export enum PackageManager {
 
 /**
  * Class for npm packages installation
- *
- * @property {PackageManager} packageManager - type of package manager
  */
 export class PackageInstaller {
+  /**
+   * Type of package manager
+   *
+   * @private
+   */
   private readonly packageManager: PackageManager;
 
   /**
