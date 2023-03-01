@@ -45,27 +45,7 @@ class DevTools {
 
     this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
 
-    const tools = this.parsedConfig.setup.tools;
-
-    /**
-     * Check if tools in config
-     */
-    if (tools) {
-      for (const toolItem of tools) {
-        let tool: Plugin;
-
-        /**
-         * Check is tool in config is string or object
-         */
-        if (typeof toolItem === 'string') {
-          tool = new Plugin(toolItem);
-        } else {
-          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
-        }
-
-        this.plugins.push(tool);
-      }
-    }
+    this.addTools();
   }
 
   /**
@@ -88,6 +68,33 @@ class DevTools {
     for (const tool of this.plugins) {
       if (tool.sourceType === SourceType.Registry) {
         this.installer.installPackage(tool.name, tool.version);
+      }
+    }
+  }
+
+  /**
+   * Add editor.js tools from config
+   */
+  private addTools(): void {
+    const tools = this.parsedConfig.setup.tools;
+
+    /**
+     * Check if tools in config
+     */
+    if (tools) {
+      for (const toolItem of tools) {
+        let tool: Plugin;
+
+        /**
+         * Check is tool in config is string or object
+         */
+        if (typeof toolItem === 'string') {
+          tool = new Plugin(toolItem);
+        } else {
+          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
+        }
+
+        this.plugins.push(tool);
       }
     }
   }
