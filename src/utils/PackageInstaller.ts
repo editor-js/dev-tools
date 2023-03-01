@@ -41,16 +41,22 @@ export class PackageInstaller {
   public installPackage(name: string, version?: string): void {
     let packageString;
 
-    // Check if version exists
+    /**
+     * Check if version exists
+     */
     if (version) {
       packageString = `${name}@${version}`;
     } else {
-      // Latest version of package
+      /**
+       * Latest version of package
+       */
       packageString = name;
     }
 
     try {
-      // Check what package manager uses
+      /**
+       * Check what package manager uses
+       */
       switch (this.packageManager) {
         case PackageManager.NPM:
           execSync(`npm install -E ${packageString}`, { stdio: 'inherit' });

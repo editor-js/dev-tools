@@ -47,12 +47,16 @@ class DevTools {
 
     const tools = this.parsedConfig.setup.tools;
 
-    // Check if tools in config
+    /**
+     * Check if tools in config
+     */
     if (tools) {
       for (const toolItem of tools) {
         let tool: Plugin;
 
-        // Check is tool in config is string or object
+        /**
+         * Check is tool in config is string or object
+         */
         if (typeof toolItem === 'string') {
           tool = new Plugin(toolItem);
         } else {
@@ -68,13 +72,19 @@ class DevTools {
    * Create editor.js workspace
    */
   public createWorkspace(): void {
-    // Check for source type of core and install it
+    /**
+     * Check for source type of core and install it
+     */
     if (this.core.sourceType === SourceType.Registry) {
-      // Install editor.js by version
+      /**
+       * Install editor.js by version
+       */
       this.installer.installPackage(this.core.name, this.core.version);
     }
 
-    // Check for source type and install all tools
+    /**
+     * Check for source type and install all tools
+     */
     for (const tool of this.plugins) {
       if (tool.sourceType === SourceType.Registry) {
         this.installer.installPackage(tool.name, tool.version);

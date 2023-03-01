@@ -44,7 +44,9 @@ export class Core implements InstallableTool {
   public checkSourceType(path?: string): SourceType {
     let sourceType: SourceType;
 
-    // Check if path exists
+    /**
+     * Check if path exists
+     */
     if (path) {
       sourceType = SourceType.Path;
 
