@@ -28,7 +28,9 @@ class DevTools {
     this.installer = new PackageInstaller(this.parsedConfig.setup.packageManager);
     this.plugins = [];
 
-    // Get core path and version from config
+    /**
+     * Get core path and version from config
+     */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
 
