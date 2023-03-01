@@ -2,14 +2,13 @@ import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/PackageInstaller.js';
 import config from '../editorjs.config.js';
 import { z } from 'zod';
-import { SourceType } from './types/editorjs/installableTool.js';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
 
 /**
  * Class editor.js dev tools
  */
-class DevTools {
+export class DevTools {
   /**
    * Editor.js core
    */
@@ -46,29 +45,17 @@ class DevTools {
     this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
 
     this.addTools();
-  }
-
-  /**
-   * Create editor.js workspace
-   */
-  public createWorkspace(): void {
-    /**
-     * Check for source type of core and install it
-     */
-    if (this.core.sourceType === SourceType.Registry) {
-      /**
-       * Install editor.js by version
-       */
-      this.installer.installPackage(this.core.name, this.core.version);
-    }
 
     /**
-     * Check for source type and install all tools
+     *  Install core
      */
-    for (const tool of this.plugins) {
-      if (tool.sourceType === SourceType.Registry) {
-        this.installer.installPackage(tool.name, tool.version);
-      }
+    this.core.install(this.installer);
+
+    /**
+     * Install all tools
+     */
+    for (let plugin of this.plugins) {
+      plugin.install(this.installer);
     }
   }
 
@@ -99,7 +86,3 @@ class DevTools {
     }
   }
 }
-
-const devTools = new DevTools();
-
-devTools.createWorkspace();
