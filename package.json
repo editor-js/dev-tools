@@ -5,6 +5,11 @@
   "files": [
     "build"
   ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./build/src/index.js",
+    "lint": "eslint src"
+  },
   "packageManager": "yarn@3.3.1",
   "devDependencies": {
     "eslint": "^8.34.0",

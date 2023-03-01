@@ -14,5 +14,5 @@
     "skipLibCheck": true,
     "outDir": "./build"
   },
-  "include": ["editor.tool.ts", "src"]
+  "include": ["editorjs.config.ts", "src"]
 }
