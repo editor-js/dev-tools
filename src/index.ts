@@ -4,6 +4,7 @@ import config from '../editorjs.config.js';
 import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
+import { EditorConfig, ToolConstructable, ToolSettings } from '@editorjs/editorjs';
 
 /**
  * Class editor.js dev tools
@@ -37,12 +38,13 @@ export class DevTools {
     this.plugins = [];
 
     /**
-     * Get core path and version from config
+     * Get core path, version and configuration from config
      */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
+    const coreConfig = this.parsedConfig.editorConfig as EditorConfig;
 
-    this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
+    this.core = new Core('@editorjs/editorjs', coreConfig, corePath, coreVersion);
 
     this.addTools();
 
@@ -72,13 +74,16 @@ export class DevTools {
       for (const toolItem of tools) {
         let tool: Plugin;
 
+        const toolSetup = toolItem[0];
+        const toolConfig = toolItem[1] as ToolConstructable | ToolSettings;
+
         /**
          * Check is tool in config is string or object
          */
-        if (typeof toolItem === 'string') {
-          tool = new Plugin(toolItem);
+        if (typeof toolSetup === 'string') {
+          tool = new Plugin(toolSetup, toolConfig);
         } else {
-          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
+          tool = new Plugin(toolSetup.name, toolConfig, toolSetup.path, toolSetup.version);
         }
 
         this.plugins.push(tool);
@@ -86,3 +91,7 @@ export class DevTools {
     }
   }
 }
+
+const dev = new DevTools()
+
+console.log(dev.core)

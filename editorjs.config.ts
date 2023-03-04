@@ -4,15 +4,15 @@ export default function config() {
         setup: {
             packageManager: 'yarn',
             core: {
-                version: '2.26.5'
+                version: '2.26.0'
             },
             tools: [
-                '@editorjs/raw',
-                {
-                    name: '@editorjs/table',
-                    version: '~2.2.0'
-                }
+                ['@editorjs/raw', {raw: { inlineToolbar: true }}]
             ]
+        },
+        editorConfig: {
+            readOnly: false,
+            holder: 'editorjs',
         }
     }
 }

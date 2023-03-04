@@ -9,7 +9,7 @@ const versionRegex = /(^|~)*\d+\.\d+\.\d+$/;
 /**
  * Configuration for editor.js tool installation
  */
-const Tool = z.object({
+const ToolSetup = z.object({
   name: z.string(),
   version: z.optional(z.string().regex(versionRegex)),
   path: z.optional(z.string()),
@@ -24,12 +24,25 @@ const Core = z.object({
 });
 
 /**
+ * Configuration for Tool
+ */
+const Tool = z.object({}).catchall(z.any());
+
+/**
+ * Configuration for Tool tuple
+ */
+const ToolRecord = z.tuple([
+  z.union([ToolSetup, z.string()]),
+  Tool,
+]);
+
+/**
  * Configuration for editor.js setup
  */
 const Setup = z.object({
   core: Core,
   packageManager: z.optional(z.nativeEnum(PackageManager)),
-  tools: z.optional(z.array(z.union([Tool, z.string()]))),
+  tools: z.optional(z.array(ToolRecord)),
 });
 
 /**
@@ -37,4 +50,5 @@ const Setup = z.object({
  */
 export const Config = z.object({
   setup: Setup,
+  editorConfig: z.object({}).catchall(z.any()),
 });
