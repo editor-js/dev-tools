@@ -74,7 +74,13 @@ export class DevTools {
       for (const toolItem of tools) {
         let tool: Plugin;
 
+        /**
+         * Get tool setup from tuple
+         */
         const toolSetup = toolItem[0];
+        /**
+         * Get tool configuration from tuple
+         */
         const toolConfig = toolItem[1] as ToolConstructable | ToolSettings;
 
         /**
@@ -91,7 +97,3 @@ export class DevTools {
     }
   }
 }
-
-const dev = new DevTools()
-
-console.log(dev.core)
