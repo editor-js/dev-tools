@@ -94,7 +94,3 @@ export class DevTools {
     }
   }
 }
-
-const dev = new DevTools();
-
-dev.core;
