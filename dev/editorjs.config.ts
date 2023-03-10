@@ -12,10 +12,6 @@ export default function config() {
                     name: '@editorjs/table',
                     version: '~2.2.0'
                 },
-                {
-                    name: 'code',
-                    path: './plugins/code/dist/bundle.js'
-                }
             ]
         }
     }

@@ -1,10 +1,10 @@
 import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/PackageInstaller.js';
-import config from '../dev/editorjs.config.js';
+import config from '../editorjs.config.js';
 import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
-import Stand from './types/stand/Stand.js';
+import Stand from './stand/Stand.js';
 
 /**
  * Class editor.js dev tools
@@ -94,3 +94,7 @@ export class DevTools {
     }
   }
 }
+
+const dev = new DevTools();
+
+dev.core;

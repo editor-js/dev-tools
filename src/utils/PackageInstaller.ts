@@ -39,9 +39,9 @@ export class PackageInstaller {
    *
    * @param {string} name - package name.
    * @param {string} version - package version
-   * @returns {string} - package bundle path
+   * @returns {string | undefined} - package bundle path
    */
-  public installPackage(name: string, version?: string): string {
+  public installPackage(name: string, version?: string): string | undefined {
     let packageString;
 
     /**
@@ -71,15 +71,21 @@ export class PackageInstaller {
      */
     const packagePath = `./node_modules/${name}/`;
 
-    /**
-     * Read package.json file of package
-     */
-    const packageJson = fs.readFileSync(`./node_modules/${name}/package.json`, 'utf-8');
-    const packageJsonObject = JSON.parse(packageJson);
+    try {
+      /**
+       * Read package.json file of package
+       */
+      const packageJson = fs.readFileSync(`./node_modules/${name}/package.json`, 'utf-8');
+      const packageJsonObject = JSON.parse(packageJson);
 
-    /**
-     * Get bundle path
-     */
-    return path.join(packagePath, packageJsonObject['main']);
+      /**
+       * Get bundle path
+       */
+      return path.join(packagePath, packageJsonObject['main']);
+    } catch (err) {
+      console.log(err);
+
+      return;
+    }
   }
 }
