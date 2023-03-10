@@ -10,6 +10,9 @@ import Stand from './types/stand/Stand.js';
  * Class editor.js dev tools
  */
 export class DevTools {
+  /**
+   * Development stand
+   */
   public stand: Stand;
 
   /**
