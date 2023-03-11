@@ -61,13 +61,13 @@ export default class Stand {
    * @param {Array<InstallableTool>} tools - tools to add
    */
   private addScripts(tools: Array<InstallableTool>): void {
-    const scripts = [];
+    let scripts = '';
 
     /**
      * Add scripts of all tools to the file
      */
     for (const tool of tools) {
-      scripts.push(`\n<script src="${tool.path}"></script>`);
+      scripts +=`\n<script src="${tool.path}"></script>`;
     }
 
     this.HTMLFileData.insert(scripts, '<body>');
