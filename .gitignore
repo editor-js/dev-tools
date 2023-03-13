@@ -4,3 +4,4 @@ build
 .yarn
 .DS_Store
 editorjs.config.ts
+index.html

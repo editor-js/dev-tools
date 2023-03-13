@@ -50,7 +50,7 @@ export default class FileData {
     /**
      * Add content to the file
      */
-    this.fileData = content;
+    this.fileData += content;
 
     this.fileData = this.fileData + fileRest;
   }
