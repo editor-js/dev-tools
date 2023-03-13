@@ -7,7 +7,7 @@ import FileData from '../utils/FileData.js';
 const STAND_TEMPLATE = path.resolve('./src/stand/stand.template');
 
 /**
- * Class for development stan
+ * Stand is the ...
  */
 export default class Stand {
   /**
