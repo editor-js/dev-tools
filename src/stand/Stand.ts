@@ -4,7 +4,7 @@ import { InstallableTool } from '../types/editorjs/InstallableTool';
 import { Plugin } from '../types/editorjs/Plugin';
 import FileData from '../utils/FileData.js';
 
-const STAND_TEMPLATE = path.resolve('./src/stand/stand.template');
+const STAND_TEMPLATE = path.resolve('./src/stand/stand.html');
 
 /**
  * Class for development stan
