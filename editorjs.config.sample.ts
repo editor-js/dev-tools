@@ -1,20 +1,19 @@
-export default function config() {
+import defineDevTools from './src/index.js';
 
-    return {
-        setup: {
-            packageManager: 'yarn',
-            core: {
-                version: '2.26.5'
+defineDevTools({
+    setup: {
+        packageManager: 'yarn',
+        core: {
+            version: '2.26.5'
+        },
+        tools: [
+            '@editorjs/raw',
+            {
+                name: '@editorjs/table',
+                version: '~2.2.0'
             },
-            tools: [
-                '@editorjs/raw',
-                {
-                    name: '@editorjs/table',
-                    version: '~2.2.0'
-                },
-            ]
-        }
+        ]
     }
-}
+});
 
 

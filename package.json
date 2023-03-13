@@ -1,15 +1,16 @@
 {
   "name": "dev-tools",
   "type": "module",
-  "main": "./build/src/index.js",
+  "main": "./build/editorjs.config.js",
   "files": [
     "build"
   ],
   "scripts": {
     "build": "tsc",
-    "start": "node ./build/src/index.js && http-server -o .",
+    "start": "node ./build/editorjs.config.js && http-server -o .",
     "lint": "eslint src"
   },
+  "packageManager": "yarn@3.4.1",
   "devDependencies": {
     "@types/node": "^18.15.1",
     "eslint": "^8.34.0",
@@ -19,5 +20,5 @@
   "dependencies": {
     "http-server": "^14.1.1",
     "zod": "^3.20.6"
-  },
+  }
 }
