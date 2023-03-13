@@ -20,5 +20,4 @@
     "http-server": "^14.1.1",
     "zod": "^3.20.6"
   },
-  "packageManager": "yarn@3.4.1"
 }
