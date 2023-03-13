@@ -7,7 +7,7 @@ import FileData from '../utils/FileData.js';
 const STAND_TEMPLATE = path.resolve('./src/stand/stand.html');
 
 /**
- * Stand is the ...
+ * Stand is the environment for testing editor.js and its plugins
  */
 export default class Stand {
   /**

@@ -1,6 +1,6 @@
 # Editor.js dev tools
 
-Description...
+Editor.js environment for development
 
 ## Usage 
 

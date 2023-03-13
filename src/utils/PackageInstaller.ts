@@ -39,7 +39,7 @@ export class PackageInstaller {
    *
    * @param {string} name - package name.
    * @param {string} version - package version
-   * @returns {string | undefined} - package bundle path
+   * @returns {string | undefined} - package bundle path, undefined, when there were some problems with reading bundle file path
    */
   public installPackage(name: string, version?: string): string | undefined {
     let packageString;
