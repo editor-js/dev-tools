@@ -5,7 +5,7 @@ Editor.js environment for development
 ## Usage 
 
 1. Install a package
-2. Fill `editorjs.config.js`
+2. Fill `editorjs.config.ts`
 3. Run `yarn dev-stand`
 
 ## Development

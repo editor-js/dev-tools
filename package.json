@@ -6,8 +6,8 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc && node ./build/src/index.js",
-    "start": "http-server -o .",
+    "build": "tsc",
+    "start": "node ./build/src/index.js && http-server -o .",
     "lint": "eslint src"
   },
   "packageManager": "yarn@3.3.1",

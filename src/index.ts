@@ -4,7 +4,7 @@ import config from '../editorjs.config.js';
 import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
-import Stand from './stand/Stand.js';
+import Stand from './Stand/Stand.js';
 
 /**
  * Class editor.js dev tools
