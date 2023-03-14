@@ -1,15 +1,20 @@
 import { Config } from './types/config.js';
 import { PackageInstaller } from './utils/PackageInstaller.js';
-import config from '../editorjs.config.js';
 import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
-import { EditorConfig, ToolConstructable, ToolSettings } from '@editorjs/editorjs';
+import Stand from './Stand/Stand.js';
+import config from '../editorjs.config.js';
 
 /**
  * Class editor.js dev tools
  */
-export class DevTools {
+class DevTools {
+  /**
+   * Development stand
+   */
+  public stand: Stand;
+
   /**
    * Editor.js core
    */
@@ -31,20 +36,21 @@ export class DevTools {
 
   /**
    * Initiate editor.js dev tools
+   *
+   * @param configData - dev tools configuration
    */
-  constructor() {
-    this.parsedConfig = Config.parse(config());
+  constructor(configData: unknown) {
+    this.parsedConfig = Config.parse(configData);
     this.installer = new PackageInstaller(this.parsedConfig.setup.packageManager);
     this.plugins = [];
 
     /**
-     * Get core path, version and configuration from config
+     * Get core path and version from config
      */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
-    const coreConfig = this.parsedConfig.editorConfig as EditorConfig;
 
-    this.core = new Core('@editorjs/editorjs', coreConfig, corePath, coreVersion);
+    this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
 
     this.addTools();
 
@@ -59,6 +65,8 @@ export class DevTools {
     for (const plugin of this.plugins) {
       plugin.install(this.installer);
     }
+
+    this.stand = new Stand(this.core, this.plugins);
   }
 
   /**
@@ -75,21 +83,12 @@ export class DevTools {
         let tool: Plugin;
 
         /**
-         * Get tool setup from tuple
-         */
-        const toolSetup = toolItem[0];
-        /**
-         * Get tool configuration from tuple
-         */
-        const toolConfig = toolItem[1] as ToolConstructable | ToolSettings;
-
-        /**
          * Check is tool in config is string or object
          */
-        if (typeof toolSetup === 'string') {
-          tool = new Plugin(toolSetup, toolConfig);
+        if (typeof toolItem === 'string') {
+          tool = new Plugin(toolItem);
         } else {
-          tool = new Plugin(toolSetup.name, toolConfig, toolSetup.path, toolSetup.version);
+          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
         }
 
         this.plugins.push(tool);
@@ -97,3 +96,8 @@ export class DevTools {
     }
   }
 }
+
+/**
+ * Initiate dev tools with config
+ */
+new DevTools(config());

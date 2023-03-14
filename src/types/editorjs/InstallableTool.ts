@@ -33,7 +33,7 @@ export class InstallableTool {
   /**
    * Tool path (local or CDN)
    */
-  public readonly path?: string;
+  public path?: string;
 
   /**
    * Initiate installable tool
@@ -59,7 +59,7 @@ export class InstallableTool {
      * Check if source type is registry and install from it
      */
     if (this.sourceType === SourceType.Registry) {
-      packageInstaller.installPackage(this.name, this.version);
+      this.path = packageInstaller.installPackage(this.name, this.version);
     }
   }
 

@@ -1,4 +1,6 @@
 import { execSync } from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
 
 /**
  * Enum for package managers
@@ -37,8 +39,9 @@ export class PackageInstaller {
    *
    * @param {string} name - package name.
    * @param {string} version - package version
+   * @returns {string | undefined} - package bundle path, undefined, when there were some problems with reading bundle file path
    */
-  public installPackage(name: string, version?: string): void {
+  public installPackage(name: string, version?: string): string | undefined {
     let packageString;
 
     /**
@@ -52,20 +55,37 @@ export class PackageInstaller {
        */
       packageString = name;
     }
+    /**
+     * Check what package manager uses
+     */
+    switch (this.packageManager) {
+      case PackageManager.NPM:
+        execSync(`npm install -E ${packageString}`, { stdio: 'inherit' });
+        break;
+      case PackageManager.YARN:
+        execSync(`yarn add ${packageString}`, { stdio: 'inherit' });
+    }
+
+    /**
+     * Get installed package path
+     */
+    const packagePath = `./node_modules/${name}/`;
 
     try {
       /**
-       * Check what package manager uses
+       * Read package.json file of package
        */
-      switch (this.packageManager) {
-        case PackageManager.NPM:
-          execSync(`npm install -E ${packageString}`, { stdio: 'inherit' });
-          break;
-        case PackageManager.YARN:
-          execSync(`yarn add ${packageString}`, { stdio: 'inherit' });
-      }
+      const packageJson = fs.readFileSync(`./node_modules/${name}/package.json`, 'utf-8');
+      const packageJsonObject = JSON.parse(packageJson);
+
+      /**
+       * Get bundle path
+       */
+      return path.join(packagePath, packageJsonObject['main']);
     } catch (err) {
       console.log(err);
+
+      return;
     }
   }
 }
