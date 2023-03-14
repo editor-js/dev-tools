@@ -43,11 +43,18 @@ export default class Stand {
     /**
      * Make tools array with core and plugins
      */
-    const tools = plugins;
+    const tools: Array<InstallableTool> = plugins;
 
     tools.push(core);
 
     this.addScripts(tools);
+
+    /**
+     * Fill incoming editor.js config as string
+     */
+    const editorConfigString = '\nconst editorConfig = `' + JSON.stringify(core.editorConfig, null, 2) + '`';
+
+    this.HTMLFileData.insert(editorConfigString, '<script>');
 
     /**
      * Write file data to index.html file

@@ -45,12 +45,13 @@ class DevTools {
     this.plugins = [];
 
     /**
-     * Get core path and version from config
+     * Get core path,version and configuration from config
      */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
+    const coreConfig = this.parsedConfig.editorConfig;
 
-    this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
+    this.core = new Core('@editorjs/editorjs', coreConfig, corePath, coreVersion);
 
     this.addTools();
 

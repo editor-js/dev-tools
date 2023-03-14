@@ -12,7 +12,10 @@ export default function config() {
                     name: '@editorjs/table',
                     version: '~2.2.0'
                 },
-            ]
+            ],
+        },
+        editorConfig: {
+            readOnly: true,
         }
     }
 };
