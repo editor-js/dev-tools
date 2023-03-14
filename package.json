@@ -1,13 +1,13 @@
 {
   "name": "dev-tools",
   "type": "module",
-  "main": "./build/editorjs.config.js",
+  "main": "./build/src/index.js",
   "files": [
     "build"
   ],
   "scripts": {
     "build": "tsc",
-    "start": "node ./build/editorjs.config.js && http-server -o .",
+    "start": "node ./build/src/index.js && http-server -o .",
     "lint": "eslint src"
   },
   "packageManager": "yarn@3.4.1",

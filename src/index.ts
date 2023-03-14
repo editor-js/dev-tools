@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
 import Stand from './Stand/Stand.js';
+import config from '../editorjs.config.js';
 
 /**
  * Class editor.js dev tools
@@ -36,10 +37,10 @@ class DevTools {
   /**
    * Initiate editor.js dev tools
    *
-   * @param config - dev tools configuration
+   * @param configData - dev tools configuration
    */
-  constructor(config: unknown) {
-    this.parsedConfig = Config.parse(config);
+  constructor(configData: unknown) {
+    this.parsedConfig = Config.parse(configData);
     this.installer = new PackageInstaller(this.parsedConfig.setup.packageManager);
     this.plugins = [];
 
@@ -97,10 +98,6 @@ class DevTools {
 }
 
 /**
- * Create editor.js development environment
- *
- * @param config - dev tools config
+ * Initiate dev tools with config
  */
-export default function defineDevTools(config: unknown): void {
-  new DevTools(config);
-}
+new DevTools(config());
