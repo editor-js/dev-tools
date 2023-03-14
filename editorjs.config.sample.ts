@@ -11,10 +11,9 @@ export default function config() {
                 {
                     name: '@editorjs/table',
                     version: '~2.2.0'
-                }
+                },
             ]
         }
     }
-}
-
+};
 
