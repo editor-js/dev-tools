@@ -11,7 +11,7 @@ Editor.js environment for development
 ## Development
 
 1. Install dependencies by `yarn install`
-2. Rename `editorjs.config.sample.ts` to `editorjs.config.ts` and fill it due to your requirements.
+2. Copy `editorjs.config.sample.ts` to `editorjs.config.ts` and fill it due to your requirements.
 3. Build dev environment by following command: `yarn build`
 4. Run dev stand by `yarn start`
 
