@@ -5,8 +5,8 @@ import { Plugin } from '../types/editorjs/Plugin.js';
 import FileData from '../utils/FileData.js';
 
 // Templates for html and script files
-const STAND_TEMPLATE = path.resolve('./src/stand/stand.html');
-const STAND_SCRIPT_TEMPLATE = path.resolve('./src/stand/stand.js');
+const STAND_TEMPLATE = path.resolve('./src/stand/stand-template.html');
+const STAND_SCRIPT_TEMPLATE = path.resolve('./src/stand/stand-template.js');
 
 /**
  * Stand is the environment for testing editor.js and its plugins
