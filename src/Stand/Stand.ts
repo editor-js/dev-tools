@@ -28,7 +28,7 @@ export default class Stand {
   private HTMLFileData: FileData;
 
   /**
-   * Data to store into stand.js file
+   * Data to store into stand script file with editor.js configuration
    */
   private JSData: FileData;
 
