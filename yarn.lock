@@ -5,74 +5,6 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@codexteam/icons@npm:0.1.0":
-  version: 0.1.0
-  resolution: "@codexteam/icons@npm:0.1.0"
-  checksum: df50a6606aed5e4375ca2c7c21da7bb91877022793a2362bc37135309d92c86695619887160416db64d9e1fb1c063761e6aacebe1ce478ef43e59ca75d8f6ab5
-  languageName: node
-  linkType: hard
-
-"@codexteam/icons@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@codexteam/icons@npm:0.0.4"
-  checksum: ead8fc8ad333e450f174fe5c7a74cbde7e34beff4ae6512962d96a115860c5a254ad5577f4e9a5c9134ef01775a6771da8fc547807b6e08dc000bd1c67642304
-  languageName: node
-  linkType: hard
-
-"@codexteam/icons@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "@codexteam/icons@npm:0.0.5"
-  checksum: 7a27857f769bab2ec6fa52662b9fad0b8084c3b1b86ad12addad774d03430a6666b88ba6f49bae945aab7e53dd5d3c9797d92948d5db177042e881caab394e86
-  languageName: node
-  linkType: hard
-
-"@codexteam/icons@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@codexteam/icons@npm:0.0.6"
-  checksum: b2d4aa71d2608f53922ca164e4c5ecb4cf446498ca65efe7da7b19c4642f6dca68119da2df5ff740e11e6e3f4dfcd822920694cab2f70ab2f1c3d2ae33b6ebfd
-  languageName: node
-  linkType: hard
-
-"@editorjs/code@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "@editorjs/code@npm:2.8.0"
-  dependencies:
-    "@codexteam/icons": ^0.0.5
-  checksum: f2182617989207199fb02a31ccc18f059370591e28274fd2c232a17add7acd1d41287aa3310e38c42a371f2bea8200a987e8209eb7151aee944637837f8d5632
-  languageName: node
-  linkType: hard
-
-"@editorjs/editorjs@npm:2.26.5":
-  version: 2.26.5
-  resolution: "@editorjs/editorjs@npm:2.26.5"
-  dependencies:
-    "@codexteam/icons": 0.1.0
-    codex-notifier: ^1.1.2
-    codex-tooltip: ^1.0.5
-    html-janitor: ^2.0.4
-    nanoid: ^3.1.22
-  checksum: 899741482b421ca8ca0f6662e9a446043a255e607b39f08394a669c0f5efa68590197dd4f740ada47ba3a72fb830c3e7e7efca0a2680338ec1a240e509f1acd4
-  languageName: node
-  linkType: hard
-
-"@editorjs/raw@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@editorjs/raw@npm:2.4.0"
-  dependencies:
-    "@codexteam/icons": ^0.0.4
-  checksum: 578592cce73138c23abcd400bade63cc29176f8ba71af60d2176c9f986daaff0234c0f8f44b50bfc7dd75e1efe0f0ab810287a18ede2d0af063ca8c611a4bf30
-  languageName: node
-  linkType: hard
-
-"@editorjs/table@npm:~2.2.0":
-  version: 2.2.1
-  resolution: "@editorjs/table@npm:2.2.1"
-  dependencies:
-    "@codexteam/icons": ^0.0.6
-  checksum: 7f03086928e5562e5fd919e80919f7a62b73556b2c01923c7b2f5a417e9027357e295b870d36ebbc8661351fa816108b9f7cd52f3948821032dbc6f021316d2c
-  languageName: node
-  linkType: hard
-
 "@es-joy/jsdoccomment@npm:~0.36.1":
   version: 0.36.1
   resolution: "@es-joy/jsdoccomment@npm:0.36.1"
@@ -782,20 +714,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codex-notifier@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "codex-notifier@npm:1.1.2"
-  checksum: 2130f5b1ff2a55417cb40132b8fa220139e761f95b9183a3616cf595c4d9cb1777a0e90675ac69a5c22253013f65ae76428f09946c69b08b11b846b1f849e461
-  languageName: node
-  linkType: hard
-
-"codex-tooltip@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "codex-tooltip@npm:1.0.5"
-  checksum: 8ea91ce69853b7054f7379710ce03163fc1262db20f4e56a38d4eb946ece37fa18b07d13df6fb72d3b7fce768af26c8af169766b0aed1f9625210fe05e182f20
-  languageName: node
-  linkType: hard
-
 "color-convert@npm:^2.0.1":
   version: 2.0.1
   resolution: "color-convert@npm:2.0.1"
@@ -931,10 +849,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dev-tools@workspace:."
   dependencies:
-    "@editorjs/code": ^2.8.0
-    "@editorjs/editorjs": 2.26.5
-    "@editorjs/raw": ^2.4.0
-    "@editorjs/table": ~2.2.0
     "@types/node": ^18.15.1
     esbuild: ^0.17.16
     eslint: ^8.34.0
@@ -1829,13 +1743,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-janitor@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "html-janitor@npm:2.0.4"
-  checksum: e571c8d75363a2c448507dff7654bbe35cf66755295a71e20289d1374d73786430ff2525b742d69adabeb6697c90c17d9b04fb70ce8de14b2ef635b4e06d0161
-  languageName: node
-  linkType: hard
-
 "http-cache-semantics@npm:^4.1.0":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -2410,7 +2317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.22, nanoid@npm:^3.3.4":
+"nanoid@npm:^3.3.4":
   version: 3.3.6
   resolution: "nanoid@npm:3.3.6"
   bin:

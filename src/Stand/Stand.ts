@@ -158,7 +158,7 @@ export default class Stand {
       /**
        * Create plugin object in tools
        */
-      this.JSData.insert(`\neditorConfig.tools.${toolName} = Tool${i}`);
+      this.JSData.insert(`\neditorConfig.tools["${toolName}"] = Tool${i}`);
     }
   }
 }
