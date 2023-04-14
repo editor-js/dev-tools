@@ -15,7 +15,7 @@ export default function config() {
                 '@editorjs/code',
                 {
                     name: 'header',
-                    path: './header'
+                    path: './header/dist/bundle.js'
                 }
             ]
         },
