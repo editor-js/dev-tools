@@ -12,10 +12,15 @@ export default function config() {
                     name: '@editorjs/table',
                     version: '~2.2.0'
                 },
-            ],
+                '@editorjs/code',
+                {
+                    name: 'header',
+                    path: './header'
+                }
+            ]
         },
         editorConfig: {
-            readOnly: true,
+            inlineToolbar: false,
         }
     }
 };

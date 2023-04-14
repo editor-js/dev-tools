@@ -37,5 +37,4 @@ const Setup = z.object({
  */
 export const Config = z.object({
   setup: Setup,
-  editorConfig: z.optional(z.unknown()),
 });

@@ -14,5 +14,6 @@
     "skipLibCheck": true,
     "outDir": "./build"
   },
-  "include": ["editorjs.config.ts", "src"]
+  "include": ["editorjs.config.ts", "src"],
+  "exclude": ["/src/Stand/stand.js"]
 }
