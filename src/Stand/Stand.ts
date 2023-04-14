@@ -111,7 +111,7 @@ export default class Stand {
    * @param {string} className - tool class name
    */
   private addImportToScript(tool: InstallableTool, className: string): void {
-    let importSource =  tool.path;
+    let importSource = tool.path;
 
     /**
      * Set import source to tool name if source type is registry
@@ -122,7 +122,12 @@ export default class Stand {
 
     const str = `\nimport ${className} from "${importSource}"`;
 
-    this.JSData.insert(str, '// Editor.js tools');
+    /**
+     * Regular comment to insert import after it
+     */
+    const regularComment = '// Editor.js tools'
+
+    this.JSData.insert(str, regularComment);
   }
 
   /**

@@ -1,5 +1,5 @@
 import config from "./editorjs.config";
 
-// Editor.js tools
+// {{{ Tools }}}
 
 const editorConfig = config().editorConfig;
