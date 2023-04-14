@@ -78,7 +78,7 @@ export default class Stand {
     /**
      * File names for stand environment
      */
-    const bundleName = 'bundle.js';
+    const bundleName = 'stand.js';
     const indexName = 'index.html';
 
     /**
@@ -125,7 +125,7 @@ export default class Stand {
     /**
      * Regular comment to insert import after it
      */
-    const regularComment = '// Editor.js tools'
+    const regularComment = '// {{{ Tools }}}'
 
     this.JSData.insert(str, regularComment);
   }
