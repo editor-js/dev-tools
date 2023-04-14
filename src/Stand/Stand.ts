@@ -125,7 +125,7 @@ export default class Stand {
     /**
      * Regular comment to insert import after it
      */
-    const regularComment = '// {{{ Tools }}}'
+    const regularComment = '// {{{ Tools }}}';
 
     this.JSData.insert(str, regularComment);
   }
