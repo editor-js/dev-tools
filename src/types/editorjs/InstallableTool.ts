@@ -1,4 +1,5 @@
 import { PackageInstaller } from '../../utils/PackageInstaller.js';
+import { execSync } from 'child_process';
 
 /**
  * Enum for source type of tool
@@ -60,6 +61,11 @@ export class InstallableTool {
      */
     if (this.sourceType === SourceType.Registry) {
       this.path = packageInstaller.installPackage(this.name, this.version);
+    } else {
+      /**
+       * Build esm bundle
+       */
+      execSync(`esbuild ${this.path} --format=esm --outfile=${this.path} --allow-overwrite`);
     }
   }
 
