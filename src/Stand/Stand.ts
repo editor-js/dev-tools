@@ -111,17 +111,13 @@ export default class Stand {
    * @param {string} className - tool class name
    */
   private addImportToScript(tool: InstallableTool, className: string): void {
-    let importSource = '';
+    let importSource =  tool.path;
 
     /**
-     * Check source type of tool
+     * Set import source to tool name if source type is registry
      */
     if (tool.sourceType === SourceType.Registry) {
       importSource = tool.name;
-    } else {
-      if (tool.path) {
-        importSource = tool.path;
-      }
     }
 
     const str = `\nimport ${className} from "${importSource}"`;
