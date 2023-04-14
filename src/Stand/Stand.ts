@@ -76,15 +76,21 @@ export default class Stand {
     this.JSData.insert(`\nconst editor = new Core(editorConfig)`);
 
     /**
+     * File names for stand environment
+     */
+    const bundleName = 'bundle.js';
+    const indexName = 'index.html';
+
+    /**
      * Add stand.js script to index.html
      */
-    this.addScript('stand.js');
+    this.addScript(bundleName);
 
     /**
      * Write file data to index.html and stand.js files
      */
-    this.HTMLFileData.saveFile('index.html');
-    this.JSData.saveFile('stand.js');
+    this.HTMLFileData.saveFile(indexName);
+    this.JSData.saveFile(bundleName);
   }
 
   /**
