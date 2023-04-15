@@ -14,5 +14,5 @@
   },
   rules: {
   },
-  ignorePatterns: ['stand-template.*']
+  ignorePatterns: ['stand-template.*', '*.js']
 }
