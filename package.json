@@ -9,7 +9,7 @@
     "build": "tsc",
     "start-stand": "vite build && vite preview",
     "start": "node ./build/src/index.js && yon start-stand",
-    "lint": "eslint src"
+    "lint": "eslint src && eslint editorjs.config.sample.ts"
   },
   "packageManager": "yarn@3.4.1",
   "devDependencies": {
