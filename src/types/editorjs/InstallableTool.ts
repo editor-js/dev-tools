@@ -1,4 +1,6 @@
 import { PackageInstaller } from '../../utils/PackageInstaller.js';
+import { execSync } from 'child_process';
+import * as path from 'path';
 
 /**
  * Enum for source type of tool
@@ -39,14 +41,22 @@ export class InstallableTool {
    * Initiate installable tool
    *
    * @param {string} name - tool name.
-   * @param {string} path - tool local or CDN path.
+   * @param {string} toolPath - tool local or CDN path.
    * @param {string} version - tool version in registry.
    */
-  constructor(name: string, path?: string, version?: string) {
+  constructor(name: string, toolPath?: string, version?: string) {
     this.name = name;
-    this.path = path;
+
+    /**
+     * Check is toolPath parameter passed
+     */
+    if (toolPath) {
+      this.path = path.resolve(toolPath);
+      this.sourceType = SourceType.Path;
+    } else {
+      this.sourceType = SourceType.Registry;
+    }
     this.version = version;
-    this.sourceType = this.getSourceType(path);
   }
 
   /**
@@ -60,23 +70,11 @@ export class InstallableTool {
      */
     if (this.sourceType === SourceType.Registry) {
       this.path = packageInstaller.installPackage(this.name, this.version);
+    } else {
+      /**
+       * Build esm bundle
+       */
+      execSync(`esbuild ${this.path} --format=esm --outfile=${this.path} --allow-overwrite`);
     }
-  }
-
-  /**
-   * Identify tool source type
-   *
-   * @param path - tool path
-   * @returns {SourceType} - tool source type
-   */
-  private getSourceType(path?: string): SourceType {
-    /**
-     * Check if path exists
-     */
-    if (path) {
-      return  SourceType.Path;
-    }
-
-    return  SourceType.Registry;
   }
 }

@@ -7,18 +7,21 @@
   ],
   "scripts": {
     "build": "tsc",
-    "start": "node ./build/src/index.js && http-server -o .",
-    "lint": "eslint src"
+    "start-stand": "vite build && vite preview",
+    "start": "node ./build/src/index.js && yon start-stand",
+    "lint": "eslint ."
   },
   "packageManager": "yarn@3.4.1",
   "devDependencies": {
     "@types/node": "^18.15.1",
     "eslint": "^8.34.0",
     "eslint-config-codex": "^1.7.2",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "yarn-or-npm": "^3.0.1"
   },
   "dependencies": {
-    "http-server": "^14.1.1",
+    "esbuild": "^0.17.16",
+    "vite": "^4.2.1",
     "zod": "^3.20.6"
   }
 }
