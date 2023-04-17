@@ -30,10 +30,6 @@ export class Plugin extends InstallableTool {
    * Initiate editor.js plugin
    *
    * @param {Options} options - plugin options.
-   * @param {string} options.name - plugin name.
-   * @param {string} options.packageName - plugin package name.
-   * @param {string} options.path - plugin local or CDN path.
-   * @param {string} options.version - plugin version in registry.
    */
   constructor({ name, packageName, path, version }: Options) {
     super(name, packageName, path, version);
