@@ -89,31 +89,31 @@ class DevTools {
         /**
          * Check is tool source in config is object or string
          */
-        if (typeof value === 'object') {
+        if (typeof sourceConfig === 'object') {
           /**
            * Tool source is path without package name and version
            */
-          if ('path' in value) {
-            tool = new Plugin({ 
-              name: key,
-              path: value.path,
+          if ('path' in sourceConfig) {
+            tool = new Plugin({
+              name: toolName,
+              path: sourceConfig.path,
             });
           } else {
             /**
              * Tool source is registry
              */
             tool = new Plugin({
-              name: key,
-              packageName: value.name,
-              version: value.version,
+              name: toolName,
+              packageName: sourceConfig.name,
+              version: sourceConfig.version,
             });
           }
         } else {
           /**
            * Tool source is package name without version
            */
-          tool = new Plugin({ name: key,
-            packageName: value,
+          tool = new Plugin({ name: toolName,
+            packageName: sourceConfig,
           });
         }
         this.plugins.push(tool);
