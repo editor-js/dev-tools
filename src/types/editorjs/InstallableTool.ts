@@ -11,9 +11,13 @@ export enum SourceType {
    */
   Registry = 'registry',
   /**
-   * Get tool by local path or CDN link
+   * Get tool by local path
    */
-  Path = 'path'
+  Path = 'path',
+  /**
+   * Get tool by CDN link
+   */
+  CDN = 'cdn'
 }
 
 /**
@@ -24,6 +28,7 @@ export class InstallableTool {
    * Tool name
    */
   public readonly name: string;
+  public readonly packageName: string | undefined;
   /**
    * Tool version in registry
    */
@@ -41,22 +46,45 @@ export class InstallableTool {
    * Initiate installable tool
    *
    * @param {string} name - tool name.
+   * @param {string} packageName - tool package name.
    * @param {string} toolPath - tool local or CDN path.
    * @param {string} version - tool version in registry.
    */
-  constructor(name: string, toolPath?: string, version?: string) {
+  constructor(name: string, packageName?: string, toolPath?: string, version?: string) {
     this.name = name;
+    this.packageName = packageName;
+
+    this.sourceType = InstallableTool.getSourceType(toolPath);
 
     /**
-     * Check is toolPath parameter passed
+     * Check if source type is path and resolve path
      */
-    if (toolPath) {
+    if (this.sourceType === SourceType.Path && toolPath) {
       this.path = path.resolve(toolPath);
-      this.sourceType = SourceType.Path;
     } else {
-      this.sourceType = SourceType.Registry;
+      this.path = toolPath;
     }
+
     this.version = version;
+  }
+
+  /**
+   * Get source type of tool
+   *
+   * @param {string} toolPath - passed tool path
+   * @returns {SourceType} - source type of tool
+   * @private
+   */
+  private static getSourceType(toolPath?: string): SourceType {
+    if (toolPath) {
+      if (toolPath.includes('http')) {
+        return SourceType.CDN;
+      }
+
+      return SourceType.Path;
+    }
+
+    return SourceType.Registry;
   }
 
   /**
@@ -68,9 +96,9 @@ export class InstallableTool {
     /**
      * Check if source type is registry and install from it
      */
-    if (this.sourceType === SourceType.Registry) {
-      this.path = packageInstaller.installPackage(this.name, this.version);
-    } else {
+    if (this.sourceType === SourceType.Registry && this.packageName) {
+      this.path = packageInstaller.installPackage(this.packageName, this.version);
+    } else if (this.sourceType === SourceType.Path) {
       /**
        * Build esm bundle
        */

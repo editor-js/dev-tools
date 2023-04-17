@@ -117,7 +117,7 @@ export default class Stand {
      * Set import source to tool name if source type is registry
      */
     if (tool.sourceType === SourceType.Registry) {
-      importSource = tool.name;
+      importSource = tool.packageName;
     }
 
     const str = `\nimport ${className} from "${importSource}"`;
@@ -136,29 +136,24 @@ export default class Stand {
    */
   private addPluginsToEditorConfig(): void {
     /**
-     * Make empty tools object
-     */
-    this.JSData.insert('\neditorConfig.tools = {};');
-
-    /**
      * Add plugins to tools object
      */
     for (let i = 0; i < this.plugins.length; i++) {
       /**
-       * Get plugin name, and split it in case "@editorjs/plugin"
+       * Get tool key
        */
-      let toolName = this.plugins[i].name;
+      const toolName = this.plugins[i].name;
 
-      if (toolName.includes('/')) {
-        const parts = toolName.split('/');
-
-        toolName = parts[1];
-      }
+      /**
+       * If tool object is undefined, create empty object
+       */
+      this.JSData.insert(`\nif (typeof editorConfig.tools.${toolName} === 'undefined') {`);
+      this.JSData.insert(`\n\teditorConfig.tools.${toolName} = {}\n}`);
 
       /**
        * Create plugin object in tools
        */
-      this.JSData.insert(`\neditorConfig.tools["${toolName}"] = Tool${i}`);
+      this.JSData.insert(`\neditorConfig.tools.${toolName}.class = Tool${i}`);
     }
   }
 }
