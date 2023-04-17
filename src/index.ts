@@ -100,7 +100,8 @@ class DevTools {
             /**
              * Tool source is registry
              */
-            tool = new Plugin({ name: key,
+            tool = new Plugin({ 
+              name: key,
               packageName: value.name,
               version: value.version });
           }
