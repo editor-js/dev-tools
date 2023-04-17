@@ -73,7 +73,6 @@ export class InstallableTool {
    *
    * @param {string} toolPath - passed tool path
    * @returns {SourceType} - source type of tool
-   * @private
    */
   private static getSourceType(toolPath?: string): SourceType {
     /**
