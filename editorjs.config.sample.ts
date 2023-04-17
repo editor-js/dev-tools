@@ -22,9 +22,6 @@ export default function config(): unknown {
           path: './warning/dist/bundle.js',
         },
         header: '@editorjs/header',
-        image: {
-          path: 'https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest',
-        },
       },
     },
     editorConfig: {
