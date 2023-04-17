@@ -83,7 +83,7 @@ class DevTools {
       /**
        * Iterate all tools
        */
-      Object.entries(tools).forEach(([key, value]) => {
+      Object.entries(tools).forEach(([toolName, sourceConfig]) => {
         let tool: Plugin;
 
         /**
@@ -94,7 +94,8 @@ class DevTools {
            * Tool source is path without package name and version
            */
           if ('path' in value) {
-            tool = new Plugin({ name: key,
+            tool = new Plugin({ 
+              name: key,
               path: value.path,
             });
           } else {
