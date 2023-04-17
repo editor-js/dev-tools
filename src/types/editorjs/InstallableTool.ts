@@ -76,8 +76,13 @@ export class InstallableTool {
    * @private
    */
   private static getSourceType(toolPath?: string): SourceType {
+    /**
+     * Regex for url
+     */
+    const urlRegex = /^https?:\/\//;
+
     if (toolPath) {
-      if (toolPath.includes('http')) {
+      if (urlRegex.test(toolPath)) {
         return SourceType.CDN;
       }
 
