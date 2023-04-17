@@ -83,7 +83,7 @@ class DevTools {
       /**
        * Iterate all tools
        */
-      Object.entries(tools).forEach(([key, value]) => {
+      Object.entries(tools).forEach(([toolName, sourceConfig]) => {
         let tool: Plugin;
 
         /**
