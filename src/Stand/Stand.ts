@@ -120,7 +120,7 @@ export default class Stand {
       importSource = tool.packageName;
     }
 
-    const str = `\nimport ${className} from "${importSource}"`;
+    const str = `\nimport ${className} from '${importSource}'`;
 
     /**
      * Regular comment to insert import after it

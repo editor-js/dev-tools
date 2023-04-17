@@ -1,4 +1,4 @@
-import config from "./editorjs.config";
+import config from './editorjs.config';
 
 // {{{ Tools }}}
 
