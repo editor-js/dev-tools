@@ -45,12 +45,13 @@ class DevTools {
     this.plugins = [];
 
     /**
-     * Get core path and version from config
+     * Get core path, version and package name from config
      */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
+    const corePackageName = this.parsedConfig.setup.core.name;
 
-    this.core = new Core('@editorjs/editorjs', corePath, coreVersion);
+    this.core = new Core('core', corePackageName, corePath, coreVersion);
 
     this.addTools();
 
@@ -79,20 +80,44 @@ class DevTools {
      * Check if tools in config
      */
     if (tools) {
-      for (const toolItem of tools) {
+      /**
+       * Iterate all tools
+       */
+      Object.entries(tools).forEach(([toolName, sourceConfig]) => {
         let tool: Plugin;
 
         /**
-         * Check is tool in config is string or object
+         * Check is tool source in config is object or string
          */
-        if (typeof toolItem === 'string') {
-          tool = new Plugin(toolItem);
+        if (typeof sourceConfig === 'object') {
+          /**
+           * Tool source is path without package name and version
+           */
+          if ('path' in sourceConfig) {
+            tool = new Plugin({
+              name: toolName,
+              path: sourceConfig.path,
+            });
+          } else {
+            /**
+             * Tool source is registry
+             */
+            tool = new Plugin({
+              name: toolName,
+              packageName: sourceConfig.name,
+              version: sourceConfig.version,
+            });
+          }
         } else {
-          tool = new Plugin(toolItem.name, toolItem.path, toolItem.version);
+          /**
+           * Tool source is package name without version
+           */
+          tool = new Plugin({ name: toolName,
+            packageName: sourceConfig,
+          });
         }
-
         this.plugins.push(tool);
-      }
+      });
     }
   }
 }

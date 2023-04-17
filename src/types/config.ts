@@ -7,18 +7,25 @@ import { PackageManager } from '../utils/packageInstaller.js';
 const versionRegex = /(^|~)*\d+\.\d+\.\d+$/;
 
 /**
- * Configuration for editor.js tool installation
+ * Configuration for editor.js tool installation from registry
  */
-const Tool = z.object({
+const ToolFromRegistry = z.object({
   name: z.string(),
   version: z.optional(z.string().regex(versionRegex)),
-  path: z.optional(z.string()),
+});
+
+/**
+ * Configuration for editor.js tool by path
+ */
+const ToolFromPath = z.object({
+  path: z.string(),
 });
 
 /**
  * Configuration for Core initiation
  */
 const Core = z.object({
+  name: z.string().default('@editorjs/editorjs'),
   version: z.optional(z.string().regex(versionRegex)),
   path: z.optional(z.string()),
 });
@@ -29,7 +36,7 @@ const Core = z.object({
 const Setup = z.object({
   core: Core,
   packageManager: z.optional(z.nativeEnum(PackageManager)),
-  tools: z.optional(z.array(z.union([Tool, z.string()]))),
+  tools: z.optional(z.record(z.string(), z.union([ToolFromRegistry, z.string(), ToolFromPath]))),
 });
 
 /**
