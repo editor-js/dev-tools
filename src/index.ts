@@ -103,7 +103,8 @@ class DevTools {
             tool = new Plugin({ 
               name: key,
               packageName: value.name,
-              version: value.version });
+              version: value.version 
+            });
           }
         } else {
           /**
