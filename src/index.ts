@@ -95,15 +95,16 @@ class DevTools {
            */
           if ('path' in value) {
             tool = new Plugin({ name: key,
-              path: value.path });
+              path: value.path,
+            });
           } else {
             /**
              * Tool source is registry
              */
-            tool = new Plugin({ 
+            tool = new Plugin({
               name: key,
               packageName: value.name,
-              version: value.version 
+              version: value.version,
             });
           }
         } else {
@@ -111,7 +112,8 @@ class DevTools {
            * Tool source is package name without version
            */
           tool = new Plugin({ name: key,
-            packageName: value });
+            packageName: value,
+          });
         }
         this.plugins.push(tool);
       });
