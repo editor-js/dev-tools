@@ -28,7 +28,7 @@ for (const extensionClass of extensions) {
     /**
      * Create extension
      */
-    const extension = new extensionClass(editor, standAPI, editorConfig);
+    const extension = new extensionClass(editor, standAPI);
 
     /**
      * If extension has styles, add them to the stand

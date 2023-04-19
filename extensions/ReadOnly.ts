@@ -14,22 +14,16 @@ export default class ReadOnlyExtension implements Extension {
    * Stand API with editor.js wrapper
    */
   public readonly stand: StandAPI;
-  /**
-   * Extension config
-   */
-  public readonly config: unknown;
 
   /**
    * Constructor for read only extension
    *
    * @param {EditorJS} editor - editor.js instance
    * @param {StandAPI} stand - stand API instance
-   * @param {unknown} config - extension config
    */
-  constructor(editor: EditorJS, stand: StandAPI, config: unknown) {
+  constructor(editor: EditorJS, stand: StandAPI) {
     this.editor = editor;
     this.stand = stand;
-    this.config = config;
   }
 
   /**
