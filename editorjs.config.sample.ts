@@ -1,3 +1,5 @@
+import ReadOnlyExtension from './extensions/ReadOnly.js';
+
 /**
  * Create editor.js dev-tools config
  *
@@ -18,14 +20,16 @@ export default function config(): unknown {
         },
         code: '@editorjs/code',
         quote: '@editorjs/quote',
-        warning: {
-          path: './warning/dist/bundle.js',
-        },
         header: '@editorjs/header',
+        checklist: {
+          path: './checklist/dist/bundle.js',
+        },
       },
     },
+    extensions: [ ReadOnlyExtension ],
     editorConfig: {
       inlineToolbar: true,
+      readOnly: false,
       tools: {
         quote: {
           config: {
@@ -50,4 +54,3 @@ export default function config(): unknown {
     },
   };
 }
-

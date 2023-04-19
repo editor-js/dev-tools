@@ -5,8 +5,9 @@ import { Plugin } from '../types/editorjs/Plugin.js';
 import FileData from '../utils/FileData.js';
 
 // Templates for html and script files
-const STAND_TEMPLATE = path.resolve('./src/stand/stand-template.html');
-const STAND_SCRIPT_TEMPLATE = path.resolve('./src/stand/stand-template.js');
+const STAND_TEMPLATE = path.resolve('./src/stand/templates/stand-template.html');
+const STAND_SCRIPT_TEMPLATE = path.resolve('./src/stand/templates/stand-template.js');
+const STAND_STYLE_TEMPLATE = path.resolve('./src/stand/templates/stand-template.css');
 
 /**
  * Stand is the environment for testing editor.js and its plugins
@@ -33,6 +34,11 @@ export default class Stand {
   private JSData: FileData;
 
   /**
+   * Data to store into stand style file
+   */
+  private CSSData: FileData;
+
+  /**
    * Initiate stand
    *
    * @param {Core} core - editor.js core
@@ -46,6 +52,11 @@ export default class Stand {
      * Get stand template file
      */
     this.HTMLFileData = new FileData(STAND_TEMPLATE);
+
+    /**
+     * Get style template file
+     */
+    this.CSSData = new FileData(STAND_STYLE_TEMPLATE);
 
     /**
      * Get script template file
@@ -73,13 +84,14 @@ export default class Stand {
     /**
      * Add editor.js core initiation to script
      */
-    this.JSData.insert(`\nconst editor = new Core(editorConfig)`);
+    this.JSData.insert(`const editor = new Core(editorConfig)`, '{{{ Core }}}');
 
     /**
      * File names for stand environment
      */
     const bundleName = 'stand.js';
     const indexName = 'index.html';
+    const styleName = 'stand.css';
 
     /**
      * Add stand.js script to index.html
@@ -87,10 +99,11 @@ export default class Stand {
     this.addScript(bundleName);
 
     /**
-     * Write file data to index.html and stand.js files
+     * Write file data to index.html, stand.js and stand.css files
      */
     this.HTMLFileData.saveFile(indexName);
     this.JSData.saveFile(bundleName);
+    this.CSSData.saveFile(styleName);
   }
 
   /**
@@ -99,7 +112,7 @@ export default class Stand {
    * @param {string} scriptPath - script path
    */
   private addScript(scriptPath: string): void {
-    const script =`\n<script src="${scriptPath}" type="module"></script>`;
+    const script =`<script src="${scriptPath}" type="module"></script>`;
 
     this.HTMLFileData.insert(script, '<body>');
   }
@@ -120,7 +133,7 @@ export default class Stand {
       importSource = tool.packageName;
     }
 
-    const str = `\nimport ${className} from '${importSource}'`;
+    const str = `import ${className} from '${importSource}'`;
 
     /**
      * Regular comment to insert import after it
@@ -145,15 +158,12 @@ export default class Stand {
       const toolName = this.plugins[i].name;
 
       /**
-       * If tool object is undefined, create empty object
+       * Add tool to tools object in editorConfig
        */
-      this.JSData.insert(`\nif (typeof editorConfig.tools.${toolName} === 'undefined') {`);
-      this.JSData.insert(`\n\teditorConfig.tools.${toolName} = {}\n}`);
+      const data = `if (!editorConfig.tools.${toolName}) editorConfig.tools.${toolName} = {}
+editorConfig.tools.${toolName}.class = Tool${i}`;
 
-      /**
-       * Create plugin object in tools
-       */
-      this.JSData.insert(`\neditorConfig.tools.${toolName}.class = Tool${i}`);
+      this.JSData.insert(data, '// {{{ Tools configuration }}}');
     }
   }
 }

@@ -3,7 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "moduleResolution": "Node",
     "strict": true,
     "resolveJsonModule": true,
@@ -15,5 +15,4 @@
     "outDir": "./build"
   },
   "include": ["editorjs.config.ts", "src", "editorjs.config.sample.ts", "vite.config.ts"],
-  "exclude": ["/src/Stand/stand.js"]
 }
