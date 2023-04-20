@@ -1,6 +1,6 @@
 import config from '../editorjs.config';
 import StandAPI from './src/StandAPI/StandAPI';
-import StandExtension from "./src/StandExtension/StandExtension";
+import StandExtension from './src/StandExtension/StandExtension';
 
 // {{{ Tools }}}
 
