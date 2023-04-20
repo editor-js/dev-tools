@@ -30,7 +30,7 @@ export default class FileData {
      * Check if after is not passed
      */
     if (!after) {
-      this.fileData += content;
+      this.fileData += '\n' + content;
 
       return;
     }
@@ -50,7 +50,7 @@ export default class FileData {
     /**
      * Add content to the file
      */
-    this.fileData += content;
+    this.fileData += '\n' + content;
 
     this.fileData = this.fileData + fileRest;
   }
