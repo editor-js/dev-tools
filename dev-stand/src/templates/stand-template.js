@@ -42,7 +42,7 @@ const standAPI = new StandAPI(editorHolder);
 for (const extensionClass of extensions) {
     const extension = new extensionClass(editor, standAPI);
     const standExtension = new StandExtension(extension);
-    standExtension.addExtensionToStand();
+    standExtension.add();
 }
 
 
