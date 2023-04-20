@@ -18,7 +18,7 @@ export default class ReadOnlyExtension implements Extension {
   /**
    * Constructor for read only extension
    *
-   * @param {EditorJS} editor - editor.js instance
+   * @param editor - editor.js instance
    * @param {StandAPI} stand - stand API instance
    */
   constructor(editor: EditorJS, stand: StandAPI) {
