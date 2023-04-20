@@ -1,5 +1,5 @@
 /**
- * Class for stand API, which is used to interact with editor.js wrapper
+ * Class for stand API, which is used to interact with Stand
  */
 export default class StandAPI {
   /**

@@ -5,9 +5,8 @@ import { Plugin } from '../types/editorjs/Plugin.js';
 import FileData from '../utils/FileData.js';
 
 // Templates for html and script files
-const STAND_TEMPLATE = path.resolve('./src/stand/templates/stand-template.html');
-const STAND_SCRIPT_TEMPLATE = path.resolve('./src/stand/templates/stand-template.js');
-const STAND_STYLE_TEMPLATE = path.resolve('./src/stand/templates/stand-template.css');
+const STAND_TEMPLATE = path.resolve('./dev-stand/src/templates/stand-template.html');
+const STAND_SCRIPT_TEMPLATE = path.resolve('./dev-stand/src/templates/stand-template.js');
 
 /**
  * Stand is the environment for testing editor.js and its plugins
@@ -34,11 +33,6 @@ export default class Stand {
   private JSData: FileData;
 
   /**
-   * Data to store into stand style file
-   */
-  private CSSData: FileData;
-
-  /**
    * Initiate stand
    *
    * @param {Core} core - editor.js core
@@ -52,11 +46,6 @@ export default class Stand {
      * Get stand template file
      */
     this.HTMLFileData = new FileData(STAND_TEMPLATE);
-
-    /**
-     * Get style template file
-     */
-    this.CSSData = new FileData(STAND_STYLE_TEMPLATE);
 
     /**
      * Get script template file
@@ -91,7 +80,6 @@ export default class Stand {
      */
     const bundleName = 'stand.js';
     const indexName = 'index.html';
-    const styleName = 'stand.css';
 
     /**
      * Add stand.js script to index.html
@@ -101,9 +89,8 @@ export default class Stand {
     /**
      * Write file data to index.html, stand.js and stand.css files
      */
-    this.HTMLFileData.saveFile(indexName);
-    this.JSData.saveFile(bundleName);
-    this.CSSData.saveFile(styleName);
+    this.HTMLFileData.saveFile('./dev-stand/' + indexName);
+    this.JSData.saveFile('./dev-stand/' + bundleName);
   }
 
   /**

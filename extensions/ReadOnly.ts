@@ -1,6 +1,6 @@
 import EditorJS from '@editorjs/editorjs';
-import StandAPI from '../src/Stand/StandAPI/StandAPI';
-import Extension, { Control } from '../src/types/extension';
+import StandAPI from '../dev-stand/src/StandAPI/StandAPI';
+import Extension, { Control } from '../dev-stand/src/types/extension';
 
 /**
  * Extension for toggle read only mode

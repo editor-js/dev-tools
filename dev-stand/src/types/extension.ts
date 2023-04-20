@@ -1,4 +1,4 @@
-import StandAPI from '../Stand/StandAPI/StandAPI';
+import StandAPI from '../StandAPI/StandAPI';
 import EditorJS from '@editorjs/editorjs';
 
 /**
@@ -8,7 +8,7 @@ export interface Control {
     /**
      * Icon for extension
      */
-    icon: unknown;
+    icon: string;
     /**
      * Title for extension
      */
