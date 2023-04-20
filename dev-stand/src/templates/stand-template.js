@@ -11,11 +11,30 @@ if (typeof editorConfig.tools === 'undefined') {
     editorConfig.tools = {}
 }
 
+const devStandContentClass = 'dev-stand__content';
+
+/**
+ * Check if holder is set in config
+ */
+const editorHolderId = editorConfig.holder ? editorConfig.holder : 'editorjs';
+
+/**
+ * Create holder for editor
+ */
+const editorHolder = document.createElement('div');
+editorHolder.id = editorHolderId;
+
+/**
+ * Append holder to dev-stand
+ */
+const devStandContent = document.querySelector(`.${devStandContentClass}`);
+devStandContent.appendChild(editorHolder);
+
 // {{{ Tools configuration }}}
 
 // {{{ Core }}}
 
-const standAPI = new StandAPI(editorConfig.holder && 'editorjs');
+const standAPI = new StandAPI(editorHolderId);
 
 /**
  * Iterate over all extensions

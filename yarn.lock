@@ -12,7 +12,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@editorjs/editorjs@npm:^2.26.5":
+"@editorjs/editorjs@npm:2.26.5":
   version: 2.26.5
   resolution: "@editorjs/editorjs@npm:2.26.5"
   dependencies:
@@ -883,7 +883,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dev-tools@workspace:."
   dependencies:
-    "@editorjs/editorjs": ^2.26.5
+    "@editorjs/editorjs": 2.26.5
     "@types/node": ^18.15.1
     esbuild: ^0.17.16
     eslint: ^8.34.0

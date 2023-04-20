@@ -20,7 +20,7 @@
     "yarn-or-npm": "^3.0.1"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.26.5",
+    "@editorjs/editorjs": "2.26.5",
     "esbuild": "^0.17.16",
     "vite": "^4.2.1",
     "zod": "^3.20.6"
