@@ -34,7 +34,7 @@ export default class StandExtension {
   /**
    * Add extension to stand
    */
-  public addExtensionToStand(): void {
+  public add(): void {
     this.addExtensionStyles();
 
     /**
