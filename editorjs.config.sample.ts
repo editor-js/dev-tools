@@ -28,8 +28,6 @@ export default function config(): unknown {
     },
     extensions: [ ReadOnlyExtension ],
     editorConfig: {
-      inlineToolbar: true,
-      readOnly: false,
       tools: {
         quote: {
           config: {
