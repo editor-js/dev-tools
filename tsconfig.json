@@ -14,6 +14,5 @@
     "skipLibCheck": true,
     "outDir": "./build"
   },
-  "include": ["editorjs.config.ts",
-    "setup", "editorjs.config.sample.ts", "vite.config.ts", "dev-stand"],
+  "include": ["editorjs.config.ts", "setup", "editorjs.config.sample.ts", "vite.config.ts", "dev-stand"],
 }

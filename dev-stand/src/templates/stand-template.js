@@ -34,7 +34,7 @@ devStandContent.appendChild(editorHolder);
 
 // {{{ Core }}}
 
-const standAPI = new StandAPI(editorHolderId);
+const standAPI = new StandAPI(editorHolder);
 
 /**
  * Iterate over all extensions

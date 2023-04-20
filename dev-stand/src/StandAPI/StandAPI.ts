@@ -10,9 +10,9 @@ export default class StandAPI {
   /**
    * Constructor for stand API
    *
-   * @param {string} holder - editor.js holder name
+   * @param {string} editorHolder - editor.js holder element
    */
-  constructor(holder: string) {
-    this.editorWrapper = document.getElementById(holder) as HTMLDivElement;
+  constructor(editorHolder: HTMLDivElement) {
+    this.editorWrapper = editorHolder;
   }
 }
