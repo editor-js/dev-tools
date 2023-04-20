@@ -15,7 +15,7 @@ if (typeof editorConfig.tools === 'undefined') {
 
 // {{{ Core }}}
 
-const standAPI = new StandAPI('editorjs');
+const standAPI = new StandAPI(editorConfig.holder && 'editorjs');
 
 /**
  * Iterate over all extensions
