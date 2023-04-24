@@ -12,6 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@codexteam/icons@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@codexteam/icons@npm:0.3.0"
+  checksum: 4949e753a9f8d0442c581512566167dddf7853fce0aa388ec9ddd9acc2aa3f081192d266c0eb1a2f78154492f376f7ce042f69ca45cad9a1f02583ab70e0000b
+  languageName: node
+  linkType: hard
+
 "@editorjs/editorjs@npm:2.26.5":
   version: 2.26.5
   resolution: "@editorjs/editorjs@npm:2.26.5"
@@ -883,6 +890,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dev-tools@workspace:."
   dependencies:
+    "@codexteam/icons": ^0.3.0
     "@editorjs/editorjs": 2.26.5
     "@types/node": ^18.15.1
     esbuild: ^0.17.16
