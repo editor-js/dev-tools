@@ -47,8 +47,9 @@ body {
 }
 
 .dev-stand__extensions-button {
-    display: inline-block;
-    padding: 3px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 150ms ease;
     cursor: pointer;
     border-radius: 31px;

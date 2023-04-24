@@ -1,5 +1,5 @@
 import Extension, { Control, Options } from '../dev-stand/src/types/extension';
-import { IconCollapse } from '@codexteam/icons';
+import * as icons from '@codexteam/icons';
 
 /**
  * Extension for toggle editor.js thin mode
@@ -24,7 +24,7 @@ export default class LayoutExtension implements Extension {
    */
   public get control(): Control {
     return {
-      icon: IconCollapse,
+      icon: icons.IconCollapse,
       title: 'Thin Mode',
       onActivate: () => {
         console.log(this.options);
