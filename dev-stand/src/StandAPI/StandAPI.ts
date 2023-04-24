@@ -1,9 +1,26 @@
 import { EditorConfig } from '@editorjs/editorjs';
 
 /**
- * Type for createEditor method
+ * Method for reiniting editor.js instance
+ *
+ * @param {EditorConfig} config - editor.js configuration to overwrite default one
  */
-type CreateEditorMethod = (config?: EditorConfig) => void;
+type ReinitEditorMethod = (config?: EditorConfig) => void;
+
+/**
+ * Interface for stand API
+ */
+interface Options {
+  /**
+   * Editor.js holder element
+   */
+  editorHolder: HTMLDivElement;
+
+  /**
+   * Method for reiniting editor.js instance
+   */
+  reinitEditor: ReinitEditorMethod;
+}
 
 /**
  * Class for stand API, which is used to interact with Stand
@@ -15,19 +32,17 @@ export default class StandAPI {
   public editorWrapper: HTMLDivElement;
 
   /**
-   * Method for creating editor.js instance
+   * Method for reiniting editor.js instance
    */
-  public createEditor: CreateEditorMethod;
+  public reinitEditor: ReinitEditorMethod;
 
   /**
    * Constructor for stand API
    *
-   * @param {string} editorHolder - editor.js holder element
-   * @param {CreateEditorMethod} createEditor - method for creating editor.js instances
+   * @param options - stand API options
    */
-  constructor(editorHolder: HTMLDivElement, createEditor: CreateEditorMethod) {
+  constructor({ editorHolder, reinitEditor }: Options) {
     this.editorWrapper = editorHolder;
-    this.createEditor = createEditor;
-    createEditor();
+    this.reinitEditor = reinitEditor;
   }
 }

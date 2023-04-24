@@ -27,10 +27,8 @@ export default class LayoutExtension implements Extension {
       icon: icons.IconCollapse,
       title: 'Thin Mode',
       onActivate: () => {
-        console.log(this.options);
         this.options.stand.editorWrapper.classList.toggle('thin');
-        this.options.editor.destroy();
-        this.options.stand.createEditor();
+        this.options.stand.reinitEditor();
       },
     };
   }

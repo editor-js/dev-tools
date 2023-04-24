@@ -4,7 +4,7 @@ import StandCreator from "./src/StandCreator/StandCreator";
 
 // {{{ Tools }}}
 
-const editorConfig = config().editorConfig;
+let editorConfig = config().editorConfig;
 const extensions = config().extensions;
 
 const tools = [];
@@ -19,17 +19,35 @@ const editorHolder = standCreator.addEditorHolder();
  */
 let extensionOptions = {};
 
+let editor;
+
 /**
  * Create editor
  * @param {EditorConfig} config - Editor configuration to overwrite default configuration
  */
 const createEditor = (config = {}) => {
+  editorConfig = Object.assign(editorConfig, config);
     /// {{{ Core initialization }}}
+  extensionOptions.editor = editor;
 }
 
-const standAPI = new StandAPI({ 
-  editorHolder, 
-  reinitEditor: createEditor
+/**
+ * Create editor instance
+ */
+createEditor();
+
+/**
+ * Reinitialize editor
+ * @param {EditorConfig} config - Editor configuration to overwrite default configuration
+ */
+const reinitEditor = (config = {}) => {
+  editor.destroy();
+  createEditor(config);
+}
+
+const standAPI = new StandAPI({
+  editorHolder,
+  reinitEditor
 });
 
 /**

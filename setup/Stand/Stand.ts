@@ -73,7 +73,7 @@ export default class Stand {
     /**
      * Add editor.js core initiation to script
      */
-    this.JSData.insert(`\textensionOptions.editor = new ${coreClassName}(Object.assign(editorConfig, config))`, '/// {{{ Core initialization }}}');
+    this.JSData.insert(`\teditor = new ${coreClassName}(editorConfig)`, '/// {{{ Core initialization }}}');
 
     /**
      * File names for stand environment
