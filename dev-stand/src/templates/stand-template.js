@@ -27,7 +27,10 @@ const createEditor = (config = {}) => {
     /// {{{ Core initialization }}}
 }
 
-const standAPI = new StandAPI(editorHolder, createEditor);
+const standAPI = new StandAPI({ 
+  editorHolder, 
+  reinitEditor: createEditor
+});
 
 /**
  * Set standAPI to extensionOptions
