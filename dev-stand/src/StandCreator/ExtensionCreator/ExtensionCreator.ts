@@ -1,9 +1,9 @@
-import Extension from '../types/extension';
+import Extension from '../../types/extension';
 
 /**
  * Class for adding extension to stand
  */
-export default class StandExtension {
+export default class ExtensionCreator {
   /**
    * Extension instance
    */
@@ -53,7 +53,7 @@ export default class StandExtension {
     /**
      * Append extension container to extensions
      */
-    const extensionsContainer = document.getElementsByClassName(StandExtension.getCSS().devStandExtensions)[0];
+    const extensionsContainer = document.getElementsByClassName(ExtensionCreator.getCSS().devStandExtensions)[0];
 
     if (extensionsContainer) {
       extensionsContainer.appendChild(container);
@@ -82,9 +82,9 @@ export default class StandExtension {
     button.innerHTML = this.extension.control.icon;
     button.addEventListener('click', () => {
       this.extension.control.onActivate();
-      button.classList.toggle(StandExtension.getCSS().devStandExtensionButtonActive);
+      button.classList.toggle(ExtensionCreator.getCSS().devStandExtensionButtonActive);
     });
-    button.classList.add(StandExtension.getCSS().devStandExtensionButton);
+    button.classList.add(ExtensionCreator.getCSS().devStandExtensionButton);
 
     return button;
   }
@@ -95,7 +95,7 @@ export default class StandExtension {
   private createExtensionContainer(): HTMLDivElement {
     const container = document.createElement('div');
 
-    container.classList.add(StandExtension.getCSS().devStandExtensionItem);
+    container.classList.add(ExtensionCreator.getCSS().devStandExtensionItem);
 
     return container;
   }

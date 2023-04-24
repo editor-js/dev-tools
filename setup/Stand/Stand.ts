@@ -73,7 +73,7 @@ export default class Stand {
     /**
      * Add editor.js core initiation to script
      */
-    this.JSData.insert(`const editor = new Core(editorConfig)`, '{{{ Core }}}');
+    this.JSData.insert(`\teditor = new ${coreClassName}(editorConfig)`, '/// {{{ Core initialization }}}');
 
     /**
      * File names for stand environment
@@ -147,8 +147,7 @@ export default class Stand {
       /**
        * Add tool to tools object in editorConfig
        */
-      const data = `if (!editorConfig.tools.${toolName}) editorConfig.tools.${toolName} = {}
-editorConfig.tools.${toolName}.class = Tool${i}`;
+      const data = `tools.push({ key: '${toolName}', class: Tool${i} });`;
 
       this.JSData.insert(data, '// {{{ Tools configuration }}}');
     }

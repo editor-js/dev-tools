@@ -1,29 +1,21 @@
-import EditorJS from '@editorjs/editorjs';
-import StandAPI from '../dev-stand/src/StandAPI/StandAPI';
-import Extension, { Control } from '../dev-stand/src/types/extension';
+import Extension, { Control, Options } from '../dev-stand/src/types/extension';
 
 /**
  * Extension for toggle read only mode
  */
 export default class ReadOnlyExtension implements Extension {
   /**
-   * Editor.js instance
+   * Extension options, which consist of editor.js and stand API instance
    */
-  public readonly editor: EditorJS;
-  /**
-   * Stand API with editor.js wrapper
-   */
-  public readonly stand: StandAPI;
+  public readonly options: Options;
 
   /**
    * Constructor for read only extension
    *
-   * @param editor - editor.js instance
-   * @param {StandAPI} stand - stand API instance
+   * @param options - extension options
    */
-  constructor(editor: EditorJS, stand: StandAPI) {
-    this.editor = editor;
-    this.stand = stand;
+  constructor(options: Options) {
+    this.options = options;
   }
 
   /**
@@ -34,7 +26,7 @@ export default class ReadOnlyExtension implements Extension {
       icon: '🔒',
       title: 'Read Only',
       onActivate: () => {
-        this.editor.readOnly.toggle();
+        this.options.editor.readOnly.toggle();
       },
     };
   }

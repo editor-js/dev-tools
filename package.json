@@ -1,14 +1,14 @@
 {
   "name": "dev-tools",
   "type": "module",
-  "main": "./build/src/index.js",
+  "main": "./build/setup/index.js",
   "files": [
     "build"
   ],
   "scripts": {
     "build": "tsc",
     "start-stand": "vite build && vite preview",
-    "start": "node ./build/src/index.js && yon start-stand",
+    "start": "node ./build/setup/index.js && yon start-stand",
     "lint": "eslint ."
   },
   "packageManager": "yarn@3.4.1",
@@ -20,6 +20,7 @@
     "yarn-or-npm": "^3.0.1"
   },
   "dependencies": {
+    "@codexteam/icons": "^0.3.0",
     "@editorjs/editorjs": "2.26.5",
     "esbuild": "^0.17.16",
     "vite": "^4.2.1",

@@ -1,48 +1,63 @@
 import config from '../editorjs.config';
 import StandAPI from './src/StandAPI/StandAPI';
-import StandExtension from './src/StandExtension/StandExtension';
+import StandCreator from "./src/StandCreator/StandCreator";
 
 // {{{ Tools }}}
 
-const editorConfig = config().editorConfig;
+let editorConfig = config().editorConfig;
 const extensions = config().extensions;
 
-if (typeof editorConfig.tools === 'undefined') {
-    editorConfig.tools = {}
-}
-
-const devStandContentClass = 'dev-stand__content';
-
-/**
- * Check if holder is set in config
- */
-const editorHolderId = editorConfig.holder ? editorConfig.holder : 'editorjs';
-
-/**
- * Create holder for editor
- */
-const editorHolder = document.createElement('div');
-editorHolder.id = editorHolderId;
-
-/**
- * Append holder to dev-stand
- */
-const devStandContent = document.querySelector(`.${devStandContentClass}`);
-devStandContent.appendChild(editorHolder);
-
+const tools = [];
 // {{{ Tools configuration }}}
 
-// {{{ Core }}}
-
-const standAPI = new StandAPI(editorHolder);
+const standCreator = new StandCreator(editorConfig, tools);
+standCreator.addToolsToEditorConfig();
+const editorHolder = standCreator.addEditorHolder();
 
 /**
- * Iterate over all extensions
+ * Create empty extensionOptions object
  */
-for (const extensionClass of extensions) {
-    const extension = new extensionClass(editor, standAPI);
-    const standExtension = new StandExtension(extension);
-    standExtension.add();
+let extensionOptions = {};
+
+let editor;
+
+/**
+ * Create editor
+ * @param {EditorConfig} config - Editor configuration to overwrite default configuration
+ */
+const createEditor = (config = {}) => {
+  editorConfig = Object.assign(editorConfig, config);
+    /// {{{ Core initialization }}}
+  extensionOptions.editor = editor;
 }
 
+/**
+ * Create editor instance
+ */
+createEditor();
 
+/**
+ * Reinitialize editor
+ * @param {EditorConfig} config - Editor configuration to overwrite default configuration
+ */
+const reinitEditor = (config = {}) => {
+  editor.destroy();
+  createEditor(config);
+}
+
+const standAPI = new StandAPI({
+  editorHolder,
+  reinitEditor
+});
+
+/**
+ * Set standAPI to extensionOptions
+ */
+extensionOptions.stand = standAPI;
+
+/**
+ * Create extensions' instances
+ */
+const standExtensions = extensions.map((extensionClass) => new extensionClass(extensionOptions));
+
+standCreator.addExtensions(standExtensions);
