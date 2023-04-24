@@ -1,14 +1,14 @@
 {
   "name": "dev-tools",
   "type": "module",
-  "main": "./build/src/index.js",
+  "main": "./build/setup/index.js",
   "files": [
     "build"
   ],
   "scripts": {
     "build": "tsc",
     "start-stand": "vite build && vite preview",
-    "start": "node ./build/src/index.js && yon start-stand",
+    "start": "node ./build/setup/index.js && yon start-stand",
     "lint": "eslint ."
   },
   "packageManager": "yarn@3.4.1",

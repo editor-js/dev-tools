@@ -20,17 +20,29 @@ export interface Control {
 }
 
 /**
+ * Extension options interface
+ */
+export interface Options {
+    /**
+     * Editor.js instance
+     */
+    editor: EditorJS,
+
+    /**
+     * Stand API instance
+     */
+    stand: StandAPI,
+}
+
+/**
  * Extension interface
  */
 export default interface Extension {
     /**
-     * Editor.js instance
+     * Extension options
      */
-    editor: EditorJS;
-    /**
-     * Stand API instance
-     */
-    stand: StandAPI;
+    options: Options;
+
     /**
      * Getter for extension control
      */
