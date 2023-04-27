@@ -1,5 +1,6 @@
 {
-  "name": "dev-tools",
+  "name": "@editorjs/dev-tools",
+  "version": "0.0.1-rc.0",
   "type": "module",
   "main": "./build/setup/index.js",
   "files": [
