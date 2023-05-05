@@ -20,6 +20,10 @@ interface Options {
    * Plugin version in registry
    */
   version?: string;
+  /**
+   * Plugin export class name
+   */
+  exportName: string;
 }
 
 /**
@@ -31,7 +35,7 @@ export class Plugin extends InstallableTool {
    *
    * @param {Options} options - plugin options.
    */
-  constructor({ name, packageName, path, version }: Options) {
-    super(name, packageName, path, version);
+  constructor({ name, packageName, path, version, exportName }: Options) {
+    super(name, exportName, packageName, path, version);
   }
 }

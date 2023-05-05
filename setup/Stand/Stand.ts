@@ -5,8 +5,8 @@ import { Plugin } from '../types/editorjs/Plugin.js';
 import FileData from '../utils/FileData.js';
 
 // Templates for html and script files
-const STAND_TEMPLATE = path.resolve('./dev-stand/src/templates/stand-template.html');
-const STAND_SCRIPT_TEMPLATE = path.resolve('./dev-stand/src/templates/stand-template.js');
+const STAND_TEMPLATE = path.resolve('./build/dev-stand/src/templates/stand-template.html');
+const STAND_SCRIPT_TEMPLATE = path.resolve('./build/dev-stand/src/templates/stand-template.js');
 
 /**
  * Stand is the environment for testing editor.js and its plugins
@@ -62,10 +62,21 @@ export default class Stand {
     /**
      * Add plugins imports to script
      */
-    for (let i = 0; i < plugins.length; i++) {
-      const toolClassName = `Tool${i}`;
+    for (const [index, plugin] of plugins.entries()) {
 
-      this.addImportToScript(plugins[i], toolClassName);
+      /**
+       * Check if plugin is from CDN
+       */
+      if (plugin.sourceType === SourceType.CDN && plugin.path) {
+        /**
+         * Add plugin script to index.html
+         */
+        this.addScript(plugin.path, false);
+      } else {
+        const toolClassName = `Tool${index}`;
+
+        this.addImportToScript(plugin, toolClassName);
+      }
     }
 
     this.addPluginsToEditorConfig();
@@ -97,9 +108,10 @@ export default class Stand {
    * Add script to index.html file
    *
    * @param {string} scriptPath - script path
+   * @param {boolean} isModule - is script has type module
    */
-  private addScript(scriptPath: string): void {
-    const script =`<script src="${scriptPath}" type="module"></script>`;
+  private addScript(scriptPath: string, isModule = true): void {
+    const script =`<script src="${scriptPath}" ${isModule ? `type="module"`: ``}></script>`;
 
     this.HTMLFileData.insert(script, '<body>');
   }
@@ -117,7 +129,19 @@ export default class Stand {
      * Set import source to tool name if source type is registry
      */
     if (tool.sourceType === SourceType.Registry) {
-      importSource = tool.packageName;
+      /**
+       * Set version to latest if it is not set
+       */
+      const version = tool.version ? `${tool.version}` : 'latest';
+
+      importSource = `https://cdn.skypack.dev/${tool.packageName}@${version}`;
+    }
+
+    /**
+     * Make named import if tool has export name
+     */
+    if (tool.exportName != 'default') {
+      className = `{ ${className} }`;
     }
 
     const str = `import ${className} from '${importSource}'`;
@@ -138,16 +162,27 @@ export default class Stand {
     /**
      * Add plugins to tools object
      */
-    for (let i = 0; i < this.plugins.length; i++) {
+    for (const [index, plugin] of this.plugins.entries()) {
       /**
        * Get tool key
        */
-      const toolName = this.plugins[i].name;
+      const toolName = plugin.name;
+
+      let className: string;
+
+      /**
+       * Set class name to plugin export name if it is not default
+       */
+      if (plugin.exportName != 'default') {
+        className = plugin.exportName;
+      } else {
+        className = `Tool${index}`;
+      }
 
       /**
        * Add tool to tools object in editorConfig
        */
-      const data = `tools.push({ key: '${toolName}', class: Tool${i} });`;
+      const data = `tools.push({ key: '${toolName}', class: ${className} });`;
 
       this.JSData.insert(data, '// {{{ Tools configuration }}}');
     }
