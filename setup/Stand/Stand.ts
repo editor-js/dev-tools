@@ -63,7 +63,6 @@ export default class Stand {
      * Add plugins imports to script
      */
     for (const [index, plugin] of plugins.entries()) {
-
       /**
        * Check if plugin is from CDN
        */

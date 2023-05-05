@@ -59,7 +59,6 @@ export class InstallableTool {
    * @param {string} packageName - tool package name.
    * @param {string} toolPath - tool local or CDN path.
    * @param {string} version - tool version in registry.
-   * @param {string} exportName - tool export name.
    */
   constructor(name: string, exportName: string, packageName?: string, toolPath?: string, version?: string) {
     this.name = name;
