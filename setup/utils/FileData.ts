@@ -20,6 +20,30 @@ export default class FileData {
   }
 
   /**
+   * Create folder if it doesn't exist
+   *
+   * @param pathToFolder - path to folder
+   * @returns {string} - path to folder
+   */
+  public static createFolder(pathToFolder: string): string {
+    const resolvedPath = path.resolve(pathToFolder);
+
+    /**
+     * Check if folder exists
+     */
+    if (fs.existsSync(resolvedPath)) {
+      return resolvedPath;
+    }
+
+    /**
+     * Create folder
+     */
+    fs.mkdirSync(resolvedPath);
+
+    return resolvedPath;
+  }
+
+  /**
    * Insert data to file
    *
    * @param {string} content - data to insert

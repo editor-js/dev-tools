@@ -22,7 +22,11 @@ export default function config(): unknown {
         quote: '@editorjs/quote',
         header: '@editorjs/header',
         checklist: {
-          path: './checklist/dist/bundle.js',
+          path: 'https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest',
+          exportName: 'Checklist',
+        },
+        image: {
+          path: './simple-image/dist/bundle.js',
         },
       },
     },

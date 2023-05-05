@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { PackageManager } from '../utils/packageInstaller.js';
 
 /**
  * Regex for string as version
@@ -12,6 +11,7 @@ const versionRegex = /(^|~)*\d+\.\d+\.\d+$/;
 const ToolFromRegistry = z.object({
   name: z.string(),
   version: z.optional(z.string().regex(versionRegex)),
+  exportName: z.string().default('default'),
 });
 
 /**
@@ -19,6 +19,7 @@ const ToolFromRegistry = z.object({
  */
 const ToolFromPath = z.object({
   path: z.string(),
+  exportName: z.string().default('default'),
 });
 
 /**
@@ -28,6 +29,7 @@ const Core = z.object({
   name: z.string().default('@editorjs/editorjs'),
   version: z.optional(z.string().regex(versionRegex)),
   path: z.optional(z.string()),
+  exportName: z.string().default('default'),
 });
 
 /**
@@ -35,7 +37,6 @@ const Core = z.object({
  */
 const Setup = z.object({
   core: Core,
-  packageManager: z.optional(z.nativeEnum(PackageManager)),
   tools: z.optional(z.record(z.string(), z.union([ToolFromRegistry, z.string(), ToolFromPath]))),
 });
 

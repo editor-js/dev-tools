@@ -1,5 +1,4 @@
 import { Config } from './types/config.js';
-import { PackageInstaller } from './utils/PackageInstaller.js';
 import { z } from 'zod';
 import { Plugin } from './types/editorjs/Plugin.js';
 import { Core } from './types/editorjs/Core.js';
@@ -14,7 +13,6 @@ class DevTools {
    * Development stand
    */
   public stand: Stand;
-
   /**
    * Editor.js core
    */
@@ -27,12 +25,6 @@ class DevTools {
    * Parsed 'editorjs.config.ts'
    */
   private readonly parsedConfig: z.infer<typeof Config>;
-  /**
-   * Util for installing packages
-   *
-   * @private
-   */
-  private readonly installer: PackageInstaller;
 
   /**
    * Initiate editor.js dev tools
@@ -41,31 +33,19 @@ class DevTools {
    */
   constructor(configData: unknown) {
     this.parsedConfig = Config.parse(configData);
-    this.installer = new PackageInstaller(this.parsedConfig.setup.packageManager);
     this.plugins = [];
 
     /**
-     * Get core path, version and package name from config
+     * Get core path, version, package name and export name from config
      */
     const corePath = this.parsedConfig.setup.core.path;
     const coreVersion = this.parsedConfig.setup.core.version;
     const corePackageName = this.parsedConfig.setup.core.name;
+    const coreExportName = this.parsedConfig.setup.core.exportName;
 
-    this.core = new Core('core', corePackageName, corePath, coreVersion);
+    this.core = new Core('core', coreExportName, corePackageName, corePath, coreVersion);
 
     this.addTools();
-
-    /**
-     *  Install core
-     */
-    this.core.install(this.installer);
-
-    /**
-     * Install all tools
-     */
-    for (const plugin of this.plugins) {
-      plugin.install(this.installer);
-    }
 
     this.stand = new Stand(this.core, this.plugins);
   }
@@ -97,6 +77,7 @@ class DevTools {
             tool = new Plugin({
               name: toolName,
               path: sourceConfig.path,
+              exportName: sourceConfig.exportName,
             });
           } else {
             /**
@@ -106,6 +87,7 @@ class DevTools {
               name: toolName,
               packageName: sourceConfig.name,
               version: sourceConfig.version,
+              exportName: sourceConfig.exportName,
             });
           }
         } else {
@@ -114,6 +96,7 @@ class DevTools {
            */
           tool = new Plugin({ name: toolName,
             packageName: sourceConfig,
+            exportName: 'default',
           });
         }
         this.plugins.push(tool);

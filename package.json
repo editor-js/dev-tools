@@ -1,20 +1,25 @@
 {
   "name": "@editorjs/dev-tools",
-  "version": "0.0.1-rc.0",
+  "version": "0.0.1-rc.1",
   "type": "module",
   "main": "./build/setup/index.js",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "tsc",
+    "copy-styles": "copyfiles -u 1 dev-stand/stand.css ./build/dev-stand/",
+    "copy-templates": "copyfiles -u 1 dev-stand/src/templates/* ./build/dev-stand/",
+    "build": "tsc && yon copy-styles && yon copy-templates",
     "start-stand": "vite build && vite preview",
     "start": "node ./build/setup/index.js && yon start-stand",
+    "dev-stand": "yon build && yon start",
     "lint": "eslint ."
   },
   "packageManager": "yarn@3.4.1",
   "devDependencies": {
+    "@editorjs/editorjs": "2.26.5",
     "@types/node": "^18.15.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.34.0",
     "eslint-config-codex": "^1.7.2",
     "typescript": "^4.9.5",
@@ -22,7 +27,6 @@
   },
   "dependencies": {
     "@codexteam/icons": "^0.3.0",
-    "@editorjs/editorjs": "2.26.5",
     "esbuild": "^0.17.16",
     "vite": "^4.2.1",
     "zod": "^3.20.6"
